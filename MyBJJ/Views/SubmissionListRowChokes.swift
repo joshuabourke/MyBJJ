@@ -13,55 +13,34 @@ struct SubmissionListRowChokes: View {
    @State var submissionListModel: SubmissionListModel
     //MARK: - BODY
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            HStack{
-                Group{
-                    Image(systemName: "figure.stand")
-                        .foregroundColor(submissionListModel.winOrLoss ? .accentColor : .red)
-                        .font(.system(size: 20))
-                    Text("Submission")
-                        .foregroundColor(submissionListModel.winOrLoss ? .accentColor : .red)
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
-                    Spacer()
-                    Text(submissionListModel.sub)
-                        .font(.system(size: 20))
-                        .bold()
-                        
-                }//: GROUP
-            }//: HSTACK
-            .padding(4)
-            Divider()
-            HStack {
-                Group{
-                    Image(systemName: "info.circle")
-                        .foregroundColor(submissionListModel.winOrLoss ? .accentColor : .red)
-                        .font(.system(size: 12))
-                    Text("Sub Type")
-                        .foregroundColor(submissionListModel.winOrLoss ? .accentColor : .red)
-                        .font(.system(size: 12))
-                        .fontWeight(.bold)
-                    Spacer()
+        VStack(alignment: .leading) {
+            HStack(alignment:.center){
+                VStack{
+                    HStack{
+                        Image(systemName: "figure.stand")
+                            .foregroundColor(submissionListModel.winOrLoss ? .green : .red)
+                            .font(.system(size: 22))
+                        Text(submissionListModel.winOrLoss ? "Win" : "Loss")
+                            .foregroundColor(submissionListModel.winOrLoss ? .green : .red)
+                            .font(.system(size: 18))
+                            .fontWeight(.bold)
+                    }//:HSTACK
+                }//: VSTACK
+                Spacer()
+                VStack(alignment:.trailing){
                     Text(submissionListModel.upperLowerChoke)
                         .font(.system(size: 12))
                         .bold()
-                        
-                }//: GROUP
+                    Text(submissionListModel.sub)
+                        .font(.system(size: 20))
+                        .bold()
+                    Text(submissionListModel.date)
+                        .font(.system(size: 10))
+                        .foregroundColor(.secondary.opacity(0.5))
+                }//: VSTACK
             }//: HSTACK
-            .padding(4)
-
-            HStack{
-                
-                Text(submissionListModel.date)
-                    .font(.system(size: 10))
-                    .foregroundColor(.secondary.opacity(0.5))
-                Spacer()
-            }//: HSTACK
-            .padding(4)
-        }//: VSTACK
-        .padding(4)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-
+        }
+        .padding()
     }
 }
     

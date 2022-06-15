@@ -42,6 +42,7 @@ struct BeltView: View {
                 .foregroundColor(beltColor)
         }//: HSTACK
         .background(Color.black)
+        .cornerRadius(8)
     }
 }
     //MARK: - PREVIEW

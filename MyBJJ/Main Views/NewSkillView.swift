@@ -31,13 +31,6 @@ struct NewSkillView: View {
     
     @Binding var isNewSubmissionOpen: Bool
     @State var completedSubmissions = subsData
-
-    @State var chokeholdCountWin = 0
-    @State var lowerBodyCountWin = 0
-    @State var upperBodyCountWin = 0
-    @State var chokeholdCountLoss = 0
-    @State var lowerBodyCountLoss = 0
-    @State var upperBodyCountLoss = 0
     
     //MARK: - ALERT
     @State var showAlert = false
@@ -86,7 +79,6 @@ struct NewSkillView: View {
             .pickerStyle(.segmented)
             .padding(30)
             
-            
             //MARK: - SUB TYPE PICKER
             Picker("New Submission", selection: $pickerSelectionIndex){
                 ForEach(pickerSubmissions, id:\.self) {
@@ -98,9 +90,7 @@ struct NewSkillView: View {
             .onChange(of: pickerSelectionIndex) { newValue in
                 selectedSub = ""
             }
-//            Text("Area: \(pickerSelectionIndex)")
-//                .font(.title2.bold())
-            
+
             List{
                 if pickerSelectionIndex == "Chokehold" {
                     ForEach(chokeHolds, id: \.self) { chokehold in
@@ -167,35 +157,29 @@ struct NewSkillView: View {
         
         //MARK: - WINS
         if pickerSelectionIndex == "Lower Body" && pickerWinOrLossIndex == "Win"{
-            lowerBodyCountLoss += 1
-            newSubVM.addLowerWin(lowerWin: lowerBodyCountWin)
+            newSubVM.addLowerWin(lowerWin: 1)
             subVM.graphMoreThanZero = true
         }
         else if pickerSelectionIndex == "Upper Body" && pickerWinOrLossIndex == "Win"{
-            upperBodyCountWin += 1
-            newSubVM.addUpperWin(upperWin: upperBodyCountWin)
+            newSubVM.addUpperWin(upperWin: 1)
             subVM.graphMoreThanZero = true
         }
         else if pickerSelectionIndex == "Chokehold" && pickerWinOrLossIndex == "Win" {
-            chokeholdCountWin += 1
-            newSubVM.addChokeWin(chokeWin: chokeholdCountWin)
+            newSubVM.addChokeWin(chokeWin: 1)
             subVM.graphMoreThanZero = true
         }
         
         //MARK: - LOSSES
         if pickerSelectionIndex == "Lower Body" && pickerWinOrLossIndex == "Loss"{
-            lowerBodyCountLoss += 1
-            newSubVM.addLowerLoss(lowerLoss: lowerBodyCountLoss)
+            newSubVM.addLowerLoss(lowerLoss: 1)
             subVM.graphMoreThanZeroLoss = true
         }
         else if pickerSelectionIndex == "Upper Body" && pickerWinOrLossIndex == "Loss"{
-            upperBodyCountLoss += 1
-            newSubVM.addUpperLoss(upperLoss: upperBodyCountLoss)
+            newSubVM.addUpperLoss(upperLoss: 1)
             subVM.graphMoreThanZeroLoss = true
         }
         else if pickerSelectionIndex == "Chokehold" && pickerWinOrLossIndex == "Loss" {
-            chokeholdCountLoss += 1
-            newSubVM.addChokeLoss(chokeLoss: chokeholdCountLoss)
+            newSubVM.addChokeLoss(chokeLoss: 1)
             subVM.graphMoreThanZeroLoss = true
         }
         

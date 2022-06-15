@@ -40,6 +40,8 @@
 		08E1877E28058443006E3D01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E1877D28058443006E3D01 /* Preview Assets.xcassets */; };
 		08E8B502284892AB00039D76 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B501284892AB00039D76 /* ForgotPasswordView.swift */; };
 		08E8B5042848978F00039D76 /* ForgotPasswordUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B5032848978F00039D76 /* ForgotPasswordUtil.swift */; };
+		08E8B5472856AA3400039D76 /* StatsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B5462856AA3400039D76 /* StatsTextView.swift */; };
+		08E8B54928570B2C00039D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B54828570B2C00039D76 /* ProfileView.swift */; };
 		08FFD9C82814A5FB00F18FB7 /* PieChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +77,8 @@
 		08E1877D28058443006E3D01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08E8B501284892AB00039D76 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		08E8B5032848978F00039D76 /* ForgotPasswordUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordUtil.swift; sourceTree = "<group>"; };
+		08E8B5462856AA3400039D76 /* StatsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTextView.swift; sourceTree = "<group>"; };
+		08E8B54828570B2C00039D76 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartLegend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				088BE0A228223A7B007B3B07 /* Main View(Firebase) */,
+				08E8B54828570B2C00039D76 /* ProfileView.swift */,
 				0838B1BB280697D000389711 /* NewSkillView.swift */,
 				08E1877828058442006E3D01 /* ContentView.swift */,
 				0843AB57281A6199007ADCEF /* SubListView.swift */,
@@ -113,6 +118,7 @@
 				0838B1BF2806ABFE00389711 /* RectangleButton.swift */,
 				08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */,
 				08DD7066281641420049B719 /* BeltView.swift */,
+				08E8B5462856AA3400039D76 /* StatsTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,9 +349,11 @@
 				0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */,
 				08E1877728058442006E3D01 /* MyBJJApp.swift in Sources */,
 				0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */,
+				08E8B54928570B2C00039D76 /* ProfileView.swift in Sources */,
 				08D452E2280FBED300E57394 /* Extension.swift in Sources */,
 				0838B1C02806ABFE00389711 /* RectangleButton.swift in Sources */,
 				0838B1E1280D0FBE00389711 /* PieChartViewRender.swift in Sources */,
+				08E8B5472856AA3400039D76 /* StatsTextView.swift in Sources */,
 				088BE09F282231E3007B3B07 /* MyBJJUser.swift in Sources */,
 				0838B1C52807D19C00389711 /* SubmissionListModel.swift in Sources */,
 				0838B1DA280A16AA00389711 /* Saved+CoreDataProperties.swift in Sources */,

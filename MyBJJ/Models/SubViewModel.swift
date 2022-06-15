@@ -33,7 +33,7 @@ class SubViewModel {
     @AppStorage("graphMoreThanZeroLoss") var graphMoreThanZeroLoss = false
     //MARK: - PAGING STATS VIEW
     @State var currentPage = 0
-    var colors = [Color.accentColor, Color.cyan.opacity(0.5), Color.green.opacity(0.5)]
+    var colors = [Color.green, Color.mint.opacity(0.5), Color.green.opacity(0.3)]
     var colorsLoss = [Color.red, Color.orange.opacity(0.5), Color.yellow.opacity(0.5)]
     var names = ["Chokehold", "Upperbody", "Lowerbody"]
 

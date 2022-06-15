@@ -20,93 +20,115 @@ struct SubListView: View {
     @State var didTapProfileButton: Bool = false
     @State var ShouldShowLogOutOptions: Bool = false
     @State var didFinishLoginOrCreateAccount: Bool = false
+    
+    //Showing log out alert
     @State var presentSigninAlert: Bool = false
     
-    //MARK: - TO UPDATE STATS VIEW FROM MAIN
-    
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: SavedRolls.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \SavedRolls.subDate, ascending: false)])
-    var savedSubs: FetchedResults<SavedRolls>
-      
+    //Showing full screen profile view.
+    @State var showProfileView: Bool = false
     //MARK: - BODY
     var body: some View {
         NavigationView {
-            VStack{
-                if subListVM.isUserCurrentlyLoggedOut {
-                    Button {
-                        print("Sign up Button tapped")
-                    } label: {
-                        Text("This is just a test")
-                    }
-
-                } else {
-                    List{
-                        ForEach(vm.submissions) { submissions in
-                            NavigationLink(destination: Text("This View will show details in future")) {
-                                
-                                SubmissionListRowChokes(submissionListModel: SubmissionListModel(upperLowerChoke: submissions.upperLowerChoke, sub: submissions.sub, date: formatTransactionTimestamp(submissions.date), winOrLoss: winOrLossIntoBool(winOrLoss: submissions.winOrLoss)))
+            ZStack {
+                //Bottom of ZSTACK!
+                GeometryReader { geo in
+                    VStack{
+                        if subListVM.isUserCurrentlyLoggedOut {
+                            Button {
+                                print("Sign up Button tapped")
+                            } label: {
+                                Text("This is just a test")
                             }
-                        }
-                        .onDelete(perform: delete)
-                        
-                    }//: LIST
-                    
-                    .listStyle(.plain)
-                    .onAppear(perform: {
-                        UITableView.appearance().contentInset.top = +30
-                    })
-                    .cornerRadius(10)
-                }
-            }
-            //MARK: - HANDLING WHEN USER TRIES TO ADD SUBMISSION WHEN THEY ARENT SIGNED IN
-            .actionSheet(isPresented: $presentSigninAlert, content: {
-                .init(title: Text("Sign In!"),message: Text("You must sign in before adding a new submission"), buttons: [.default(Text("Sign In"),action: {
-                    didTapProfileButton = true
-                }), .cancel()])
-            })
-            .navigationBarTitle("MyBJJ")
-            .navigationBarItems(leading:
-            HStack {
-                let email = subListVM.myBJJUser?.email.replacingOccurrences(of: "@gmail.com", with: "")
-                Button(action: {
-                    print("GO TO LOGIN SCREEN BUTTON CLICKED")
-                    if subListVM.isUserCurrentlyLoggedOut{
-                        //If logged out allow user to open login/create account screen.
-                        didTapProfileButton = true
-                        
-                    } else {
-                        //Else the button will be a cog and allow the user to log out.
-                        
-                        ShouldShowLogOutOptions.toggle()
-                    }
-                }, label: {
-                    Image(systemName: subListVM.isUserCurrentlyLoggedOut ? "person" : "person.fill")
-                        .font(.system(size: 20).bold())
-            })
-                Text(subListVM.isUserCurrentlyLoggedOut ? "" : "\(email ?? "")")
-                    .font(.system(size: 18, weight: .bold))
-            }//: HSTACK
+                            
+                        } else {
+                            List{
+                                ForEach(vm.submissions) { submissions in
+                                    NavigationLink(destination: Text("This View will show details in future")) {
+                                        
+                                        SubmissionListRowChokes(submissionListModel: SubmissionListModel(upperLowerChoke: submissions.upperLowerChoke, sub: submissions.sub, date: formatTransactionTimestamp(submissions.date), winOrLoss: winOrLossIntoBool(winOrLoss: submissions.winOrLoss)))
+                                    }
+                                }
+                                .onDelete(perform: delete)
                                 
-            ,trailing: Button(action: {
-                print("plus Button")
-
-                if subListVM.isUserCurrentlyLoggedOut {
-                    presentSigninAlert.toggle()
-                } else {
-                    isNewBJJItemOpen = true
-                }
-            }, label: {
-                Image(systemName: "plus")
-                    .font(.system(size: 20).bold())
-            }))
-            
+                            }//: LIST
+                            .listStyle(.plain)
+                            //                    .padding(.top, 30)
+                            .onAppear(perform: {
+                                UITableView.appearance().contentInset.top = +30
+                            })
+                            .cornerRadius(10)
+                        }
+                    }
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .offset(x: self.showProfileView ? geo.size.width : 0)
+                    .disabled(self.showProfileView ? true : false)
+                    //MARK: - HANDLING WHEN USER TRIES TO ADD SUBMISSION WHEN THEY ARENT SIGNED IN
+                    .actionSheet(isPresented: $presentSigninAlert, content: {
+                        .init(title: Text("Sign In!"),message: Text("You must sign in before adding a new submission"), buttons: [.default(Text("Sign In"),action: {
+                            didTapProfileButton = true
+                        }), .cancel()])
+                    })
+                    .navigationBarTitle(showProfileView ? "Profile" : "MyBJJ")
+                    .navigationBarItems(leading:
+                                            HStack {
+                        let email = subListVM.myBJJUser?.email.replacingOccurrences(of: "@gmail.com", with: "")
+                        Button(action: {
+                            print("GO TO LOGIN SCREEN BUTTON CLICKED")
+                            if subListVM.isUserCurrentlyLoggedOut{
+                                //If logged out allow user to open login/create account screen.
+                                didTapProfileButton = true
+                                
+                            } else {
+                                //Else the button will be a cog and allow the user to log out.
+                                withAnimation {
+                                    showProfileView.toggle()
+                                }
+                                //                            ShouldShowLogOutOptions.toggle()
+                            }
+                        }, label: {
+                            
+                            if showProfileView {
+                                HStack {
+                                    Image(systemName: "chevron.left")
+                                    Text("Back")
+                                }//: HSTACK
+                            } else {
+                                Image(systemName: subListVM.isUserCurrentlyLoggedOut ? "person" : "person.fill")
+                                    .font(.system(size: 20).bold())
+                            }
+                        })
+                        Text(subListVM.isUserCurrentlyLoggedOut ? "" : "\(email ?? "")")
+                            .font(.system(size: 18, weight: .bold))
+                    }//: HSTACK
+                                        
+                                        ,trailing: Button(action: {
+                        print("plus Button")
+                        
+                        if subListVM.isUserCurrentlyLoggedOut {
+                            presentSigninAlert.toggle()
+                        } else {
+                            isNewBJJItemOpen = true
+                        }
+                    }, label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 20).bold())
+                    }))
+                    
+                    
+                    if self.showProfileView {
+                        ProfileView(closeProfileView: $showProfileView)
+                            .frame(width: geo.size.width)
+                            .transition(.move(edge: .leading))
+                    }
+                }//: GEO
+                //Top of ZSTACK!
+            }//: ZSTACK
         }//NAVIGATION
         .onAppear() {
-                self.vm.getDataSubmissions()
-                self.vm.fetchAllStats()
+            self.vm.getDataSubmissions()
+            self.vm.fetchAllStats()
         }
-
+        
         //MARK: - SIGN OUT ACTION SHEET.
         .actionSheet(isPresented: $ShouldShowLogOutOptions, content: {
             .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [.destructive(Text("Sign Out"), action:{
@@ -123,7 +145,10 @@ struct SubListView: View {
             NewSkillView(newSubVM: AddingNewSubViewModel(myBJJUser: .init(data: ["uid": "bQsUeLnTOXg27Bp06PaUayRXQv82", "email" : "josh@gmail.com"])), isNewSubmissionOpen: $isNewBJJItemOpen)
         }
         //MARK: - FULL SCREEN LOG IN SCREEN / CREATE USER
-        .fullScreenCover(isPresented: $didTapProfileButton) {
+        .fullScreenCover(isPresented: $didTapProfileButton, onDismiss: {
+            vm.getDataSubmissions()
+            vm.fetchAllStats()
+        }) {
             LoginView(didFinishLoginProcess: {
                 self.subListVM.isUserCurrentlyLoggedOut = false
                 self.subListVM.fetchCurrentUser()
@@ -132,21 +157,23 @@ struct SubListView: View {
                 if !subListVM.isUserCurrentlyLoggedOut{
                     didTapProfileButton = false
                 }
-
+                
             }, didFinishingLoggingIn: $didFinishLoginOrCreateAccount)
         }
     }
-
-
+    
+    
     
     //MARK: - FUNCTION
     func formatTransactionTimestamp(_ timestamp: Timestamp?) -> String {
         if let timestamp = timestamp {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
+            dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .short
             
+            let format = "E, dd MMM yyyy h:mm a"
             let date = timestamp.dateValue()
+            dateFormatter.dateFormat = format
             dateFormatter.locale = Locale.current
             let formatted = dateFormatter.string(from: date)
             return formatted
@@ -181,7 +208,7 @@ struct SubListView: View {
                 vm.deleteLowerWinStats(lowerWinStatsToDelete: lowerBodyItem)
                 vm.lowerBodyWinsStruct.removeFirst()
                 self.vm.fetchAllStats()
-         
+                
             }
             
             else if submissionItem.upperLowerChoke == "Lower Body" && submissionItem.winOrLoss == "Loss" {
@@ -189,7 +216,7 @@ struct SubListView: View {
                 vm.deleteLowerLossStats(lowerLossStatsToDelete: lowerBodyLossItem)
                 vm.lowerBodyLossStruct.removeFirst()
                 self.vm.fetchAllStats()
-         
+                
             }
             
             else if submissionItem.upperLowerChoke == "Upper Body" && submissionItem.winOrLoss == "Loss" {
@@ -197,7 +224,7 @@ struct SubListView: View {
                 vm.deleteUpperLossStats(upperLossStatsToDelete: upperBodyLossItem)
                 vm.upperBodyLossStruct.removeFirst()
                 self.vm.fetchAllStats()
-            
+                
             }
             else if submissionItem.upperLowerChoke == "Chokehold" && submissionItem.winOrLoss == "Loss" {
                 let chokeHoldLossItem = vm.chokeHoldLossStruct[0]
@@ -207,32 +234,32 @@ struct SubListView: View {
             }
         }
         vm.submissions.remove(atOffsets: offsets)
-
+        
     }
     
     
     func winOrLossIntoBool(winOrLoss: String) -> Bool{
-    
+        
         var winLoss: Bool = true
-    
-
-            if winOrLoss == "Win"{
-                winLoss = true
-            } else if winOrLoss == "Loss"{
-                winLoss = false
-            }
-            
+        
+        
+        if winOrLoss == "Win"{
+            winLoss = true
+        } else if winOrLoss == "Loss"{
+            winLoss = false
+        }
+        
         return winLoss
-
+        
     }
-
+    
 }
 
 
-    //MARK: - PREVIEW
+//MARK: - PREVIEW
 struct SubListView_Previews: PreviewProvider {
     static var previews: some View {
-//        SubListView(vm: AddingNewSubViewModel(myBJJUser: .init(data: ["uid" : "bQsUeLnTOXg27Bp06PaUayRXQv82", "email": "josh@gmail.com"])), lossMoreThanZero: .constant(false), winMoreThanZero: .constant(false))
+        //        SubListView(vm: AddingNewSubViewModel(myBJJUser: .init(data: ["uid" : "bQsUeLnTOXg27Bp06PaUayRXQv82", "email": "josh@gmail.com"])), lossMoreThanZero: .constant(false), winMoreThanZero: .constant(false))
         SubListView()
     }
 }
