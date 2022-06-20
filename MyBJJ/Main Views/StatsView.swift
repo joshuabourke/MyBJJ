@@ -12,13 +12,22 @@ struct StatsView: View {
     var subVM = SubViewModel()
     @EnvironmentObject var subListVM: SubListViewModel
     @EnvironmentObject var vm: AddingNewSubViewModel
-    
+    @State var arrayOfWinSubmissions: [String] = []
+    @State var arrayOfLossSubmissions: [String] = []
+    @State var mostCommonWin: String = ""
+    @State var mostCommonLoss: String = ""
 //    @ObservedObject var vm = AddingNewSubViewModel(myBJJUser: .init(data: ["uid" : "bQsUeLnTOXg27Bp06PaUayRXQv82", "email": "josh@gmail.com"]))
     //MARK: - BODY
     var body: some View {
         NavigationView {
             ScrollView{
+
                 if !subListVM.isUserCurrentlyLoggedOut {
+                    HStack{
+                        StatsTextView(titleName: "Most Successful", valueName: mostSuccessfulSub(stringArray: arrayOfWinSubmissions))
+                        StatsTextView(titleName: "Least Successful", valueName: mostSuccessfulSub(stringArray: arrayOfLossSubmissions))
+                    }//: HSTACK (Text Stat Views)
+                    .frame(maxWidth: .infinity)
                     VStack(alignment:.leading){
                         //MARK: - PIE GRAPH
                         if (vm.chokeHoldWinsStruct.count > 0) || (vm.upperBodyWinsStruct.count > 0) || vm.lowerBodyWinsStruct.count > 0{
@@ -85,7 +94,6 @@ struct StatsView: View {
                         }
                     }//: VSTACK
                     .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height)
-                    .background(Color.white.opacity(0.2))
                     .cornerRadius(20)
                     .padding(8)
                     .shadow(radius: 10)
@@ -100,6 +108,39 @@ struct StatsView: View {
                 }
             }//SCROLL
         }//: NAVIGATION
+        .onAppear(){
+            arrayOfWinSubs()
+            arrayOfLossSubs()
+            mostCommonLoss = mostSuccessfulSub(stringArray: arrayOfLossSubmissions)
+            mostCommonWin = mostSuccessfulSub(stringArray: arrayOfWinSubmissions)
+            print(arrayOfWinSubmissions)
+            print("Most Common Win: \(mostCommonWin)")
+            print("Most Common Loss: \(mostCommonLoss)")
+        }
+    }
+    //MARK: - FUNCTIONS
+    func mostSuccessfulSub(stringArray: [String]) -> String{
+        let stringArray = stringArray.reduce(into: [:]) { (counts, strings) in
+            counts[strings, default: 0] += 1
+        }
+        return stringArray.sorted(by: {$0.value > $1.value}).first?.key ?? ""
+    }
+    func arrayOfWinSubs() -> [String] {
+        for sub in vm.submissions {
+            if sub.winOrLoss == "Win"{
+                arrayOfWinSubmissions.append(sub.sub)
+            }
+        }
+        return arrayOfWinSubmissions
+    }
+    
+    func arrayOfLossSubs() -> [String] {
+        for sub in vm.submissions {
+            if sub.winOrLoss == "Loss"{
+                arrayOfLossSubmissions.append(sub.sub)
+            }
+        }
+        return arrayOfLossSubmissions
     }
 }
 

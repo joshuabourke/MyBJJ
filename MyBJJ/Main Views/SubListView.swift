@@ -52,7 +52,6 @@ struct SubListView: View {
                                 
                             }//: LIST
                             .listStyle(.plain)
-                            //                    .padding(.top, 30)
                             .onAppear(perform: {
                                 UITableView.appearance().contentInset.top = +30
                             })
@@ -101,7 +100,7 @@ struct SubListView: View {
                             .font(.system(size: 18, weight: .bold))
                     }//: HSTACK
                                         
-                                        ,trailing: Button(action: {
+                    ,trailing: Button(action: {
                         print("plus Button")
                         
                         if subListVM.isUserCurrentlyLoggedOut {
@@ -109,11 +108,16 @@ struct SubListView: View {
                         } else {
                             isNewBJJItemOpen = true
                         }
+                        if showProfileView {
+                            withAnimation {
+                                showProfileView.toggle()
+                            }
+                        }
+                        
                     }, label: {
                         Image(systemName: "plus")
                             .font(.system(size: 20).bold())
                     }))
-                    
                     
                     if self.showProfileView {
                         ProfileView(closeProfileView: $showProfileView)
@@ -259,7 +263,6 @@ struct SubListView: View {
 //MARK: - PREVIEW
 struct SubListView_Previews: PreviewProvider {
     static var previews: some View {
-        //        SubListView(vm: AddingNewSubViewModel(myBJJUser: .init(data: ["uid" : "bQsUeLnTOXg27Bp06PaUayRXQv82", "email": "josh@gmail.com"])), lossMoreThanZero: .constant(false), winMoreThanZero: .constant(false))
         SubListView()
     }
 }

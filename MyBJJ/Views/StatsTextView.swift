@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct StatsTextView: View {
+    var titleName: String
+    var valueName: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("Best Submission")
+            Text(titleName)
                 .font(.headline)
-            Text("Rear Naked")
+            Text(valueName)
                 .font(.title.bold())
         }//: VSTACK
         
         .padding()
-        .background(Color.white)
+        .background(Color.clear)
         .cornerRadius(20)
-        .shadow(radius: 6)
+        .shadow(radius: 4)
         
         
     }
@@ -27,7 +30,7 @@ struct StatsTextView: View {
 
 struct StatsTextView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsTextView()
+        StatsTextView(titleName: "Most Successful", valueName: "Rear Naked")
             .previewLayout(.sizeThatFits)
             .padding()
     }

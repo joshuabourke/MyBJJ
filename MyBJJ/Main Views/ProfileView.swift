@@ -14,8 +14,6 @@ struct ProfileView: View {
     @Binding var closeProfileView: Bool
     //MARK: - BODY
     var body: some View {
-
-        
             VStack{
                 Text("Rank")
                     .font(.system(size: 22))

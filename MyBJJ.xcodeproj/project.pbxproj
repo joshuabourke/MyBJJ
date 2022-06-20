@@ -222,7 +222,6 @@
 				08D452E0280FBEC100E57394 /* Extension */,
 				0838B1C32807D17B00389711 /* Models */,
 				0838B1BE2806ABF400389711 /* Views */,
-				08E187842806964F006E3D01 /* Extensions */,
 				0838B1BD280697D900389711 /* Main Views */,
 				08E1877A28058443006E3D01 /* Assets.xcassets */,
 				088BE08F2820F101007B3B07 /* GoogleService-Info.plist */,
@@ -239,13 +238,6 @@
 				08E1877D28058443006E3D01 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		08E187842806964F006E3D01 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +495,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -533,7 +525,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

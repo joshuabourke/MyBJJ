@@ -34,13 +34,6 @@ struct NewSkillView: View {
     
     //MARK: - ALERT
     @State var showAlert = false
-
-    //MARK: - CORE DATA
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(entity: SavedRolls.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \SavedRolls.subDate, ascending: true)])
-    
-    
-    var savedSubs: FetchedResults<SavedRolls>
     //MARK: - BODY
     var body: some View {
         VStack{
