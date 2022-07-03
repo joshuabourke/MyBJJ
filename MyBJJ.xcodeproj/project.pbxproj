@@ -21,10 +21,10 @@
 		0838B1DF280D0CB700389711 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838B1DE280D0CB700389711 /* PieChartView.swift */; };
 		0838B1E1280D0FBE00389711 /* PieChartViewRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838B1E0280D0FBE00389711 /* PieChartViewRender.swift */; };
 		0838B1E3280D12D000389711 /* PieChartRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838B1E2280D12D000389711 /* PieChartRowsView.swift */; };
+		0839B60D28714008007076F5 /* BeltViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0839B60C28714008007076F5 /* BeltViewMenu.swift */; };
 		0843AB58281A6199007ADCEF /* SubListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0843AB57281A6199007ADCEF /* SubListView.swift */; };
 		0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0843AB59281A6225007ADCEF /* SubViewModel.swift */; };
 		0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0843AB5D281A68F7007ADCEF /* StatsView.swift */; };
-		088BE0902820F101007B3B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 088BE08F2820F101007B3B07 /* GoogleService-Info.plist */; };
 		088BE0932820F1D5007B3B07 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0922820F1D5007B3B07 /* FirebaseAuth */; };
 		088BE0952820F1D5007B3B07 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0942820F1D5007B3B07 /* FirebaseFirestore */; };
 		088BE0972820F1D5007B3B07 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0962820F1D5007B3B07 /* FirebaseStorage */; };
@@ -42,6 +42,12 @@
 		08E8B5042848978F00039D76 /* ForgotPasswordUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B5032848978F00039D76 /* ForgotPasswordUtil.swift */; };
 		08E8B5472856AA3400039D76 /* StatsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B5462856AA3400039D76 /* StatsTextView.swift */; };
 		08E8B54928570B2C00039D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B54828570B2C00039D76 /* ProfileView.swift */; };
+		08E8B571285FFD6D00039D76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08E8B570285FFD6D00039D76 /* GoogleService-Info.plist */; };
+		08E8B57E2867E15200039D76 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B5792867E15200039D76 /* NotificationManager.swift */; };
+		08E8B57F2867E15200039D76 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B57A2867E15200039D76 /* ToggleButton.swift */; };
+		08E8B5802867E15200039D76 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B57B2867E15200039D76 /* NotificationSettingsView.swift */; };
+		08E8B5812867E15200039D76 /* ReminderListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B57C2867E15200039D76 /* ReminderListViewItem.swift */; };
+		08E8B5822867E15200039D76 /* ToggleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E8B57D2867E15200039D76 /* ToggleButtonView.swift */; };
 		08FFD9C82814A5FB00F18FB7 /* PieChartLegend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,10 +66,10 @@
 		0838B1DE280D0CB700389711 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		0838B1E0280D0FBE00389711 /* PieChartViewRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewRender.swift; sourceTree = "<group>"; };
 		0838B1E2280D12D000389711 /* PieChartRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartRowsView.swift; sourceTree = "<group>"; };
+		0839B60C28714008007076F5 /* BeltViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeltViewMenu.swift; sourceTree = "<group>"; };
 		0843AB57281A6199007ADCEF /* SubListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubListView.swift; sourceTree = "<group>"; };
 		0843AB59281A6225007ADCEF /* SubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewModel.swift; sourceTree = "<group>"; };
 		0843AB5D281A68F7007ADCEF /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		088BE08F2820F101007B3B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		088BE09828222640007B3B07 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		088BE09B28222A9C007B3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		088BE09E282231E3007B3B07 /* MyBJJUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBJJUser.swift; sourceTree = "<group>"; };
@@ -79,6 +85,12 @@
 		08E8B5032848978F00039D76 /* ForgotPasswordUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordUtil.swift; sourceTree = "<group>"; };
 		08E8B5462856AA3400039D76 /* StatsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTextView.swift; sourceTree = "<group>"; };
 		08E8B54828570B2C00039D76 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		08E8B570285FFD6D00039D76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		08E8B5792867E15200039D76 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = "MyBJJ/Main Views/Reminders/NotificationManager.swift"; sourceTree = SOURCE_ROOT; };
+		08E8B57A2867E15200039D76 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleButton.swift; path = "MyBJJ/Main Views/Reminders/ToggleButton.swift"; sourceTree = SOURCE_ROOT; };
+		08E8B57B2867E15200039D76 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationSettingsView.swift; path = "MyBJJ/Main Views/Reminders/NotificationSettingsView.swift"; sourceTree = SOURCE_ROOT; };
+		08E8B57C2867E15200039D76 /* ReminderListViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderListViewItem.swift; path = "MyBJJ/Main Views/Reminders/ReminderListViewItem.swift"; sourceTree = SOURCE_ROOT; };
+		08E8B57D2867E15200039D76 /* ToggleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleButtonView.swift; path = "MyBJJ/Main Views/Reminders/ToggleButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartLegend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +111,8 @@
 		0838B1BD280697D900389711 /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
-				088BE0A228223A7B007B3B07 /* Main View(Firebase) */,
+				08E8B5782867E13700039D76 /* RemindersView */,
+				088BE0A228223A7B007B3B07 /* Login View(Firebase) */,
 				08E8B54828570B2C00039D76 /* ProfileView.swift */,
 				0838B1BB280697D000389711 /* NewSkillView.swift */,
 				08E1877828058442006E3D01 /* ContentView.swift */,
@@ -119,6 +132,7 @@
 				08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */,
 				08DD7066281641420049B719 /* BeltView.swift */,
 				08E8B5462856AA3400039D76 /* StatsTextView.swift */,
+				0839B60C28714008007076F5 /* BeltViewMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,14 +195,14 @@
 			path = "Firebase User";
 			sourceTree = "<group>";
 		};
-		088BE0A228223A7B007B3B07 /* Main View(Firebase) */ = {
+		088BE0A228223A7B007B3B07 /* Login View(Firebase) */ = {
 			isa = PBXGroup;
 			children = (
 				088BE09828222640007B3B07 /* LoginView.swift */,
 				088BE0A028223A74007B3B07 /* ImagePicker.swift */,
 				08E8B501284892AB00039D76 /* ForgotPasswordView.swift */,
 			);
-			path = "Main View(Firebase)";
+			path = "Login View(Firebase)";
 			sourceTree = "<group>";
 		};
 		08D452E0280FBEC100E57394 /* Extension */ = {
@@ -224,7 +238,7 @@
 				0838B1BE2806ABF400389711 /* Views */,
 				0838B1BD280697D900389711 /* Main Views */,
 				08E1877A28058443006E3D01 /* Assets.xcassets */,
-				088BE08F2820F101007B3B07 /* GoogleService-Info.plist */,
+				08E8B570285FFD6D00039D76 /* GoogleService-Info.plist */,
 				0838B1D4280A156900389711 /* CoreData */,
 				08E1877628058442006E3D01 /* MyBJJApp.swift */,
 				08E1877C28058443006E3D01 /* Preview Content */,
@@ -238,6 +252,18 @@
 				08E1877D28058443006E3D01 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		08E8B5782867E13700039D76 /* RemindersView */ = {
+			isa = PBXGroup;
+			children = (
+				08E8B5792867E15200039D76 /* NotificationManager.swift */,
+				08E8B57B2867E15200039D76 /* NotificationSettingsView.swift */,
+				08E8B57C2867E15200039D76 /* ReminderListViewItem.swift */,
+				08E8B57A2867E15200039D76 /* ToggleButton.swift */,
+				08E8B57D2867E15200039D76 /* ToggleButtonView.swift */,
+			);
+			path = RemindersView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08E1877E28058443006E3D01 /* Preview Assets.xcassets in Resources */,
-				088BE0902820F101007B3B07 /* GoogleService-Info.plist in Resources */,
+				08E8B571285FFD6D00039D76 /* GoogleService-Info.plist in Resources */,
 				08E1877B28058443006E3D01 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,8 +354,10 @@
 				0838B1CF28081A2400389711 /* SingleSelectionDemoView.swift in Sources */,
 				0838B1C92807E0F000389711 /* SubData.swift in Sources */,
 				0838B1CD2808195600389711 /* CustomRowSelectionTest.swift in Sources */,
+				08E8B5802867E15200039D76 /* NotificationSettingsView.swift in Sources */,
 				08E8B502284892AB00039D76 /* ForgotPasswordView.swift in Sources */,
 				0838B1DF280D0CB700389711 /* PieChartView.swift in Sources */,
+				08E8B57F2867E15200039D76 /* ToggleButton.swift in Sources */,
 				088BE09928222640007B3B07 /* LoginView.swift in Sources */,
 				0843AB58281A6199007ADCEF /* SubListView.swift in Sources */,
 				08E8B5042848978F00039D76 /* ForgotPasswordUtil.swift in Sources */,
@@ -341,12 +369,16 @@
 				0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */,
 				08E1877728058442006E3D01 /* MyBJJApp.swift in Sources */,
 				0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */,
+				08E8B57E2867E15200039D76 /* NotificationManager.swift in Sources */,
 				08E8B54928570B2C00039D76 /* ProfileView.swift in Sources */,
 				08D452E2280FBED300E57394 /* Extension.swift in Sources */,
+				0839B60D28714008007076F5 /* BeltViewMenu.swift in Sources */,
 				0838B1C02806ABFE00389711 /* RectangleButton.swift in Sources */,
 				0838B1E1280D0FBE00389711 /* PieChartViewRender.swift in Sources */,
 				08E8B5472856AA3400039D76 /* StatsTextView.swift in Sources */,
 				088BE09F282231E3007B3B07 /* MyBJJUser.swift in Sources */,
+				08E8B5822867E15200039D76 /* ToggleButtonView.swift in Sources */,
+				08E8B5812867E15200039D76 /* ReminderListViewItem.swift in Sources */,
 				0838B1C52807D19C00389711 /* SubmissionListModel.swift in Sources */,
 				0838B1DA280A16AA00389711 /* Saved+CoreDataProperties.swift in Sources */,
 			);

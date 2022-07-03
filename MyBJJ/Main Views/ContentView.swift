@@ -44,7 +44,12 @@ struct ContentView: View {
             .environmentObject(vm)
             .environmentObject(subListVM)
             .ignoresSafeArea(edges: .bottom)
-
+            .onAppear(){
+                
+                //The below code will ask the user to allow notifications. It will also remove the badge from the corner of the app once the user has opened it.
+                NotificationManager.instance.requestAuthorization()
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            }
     }
 
 }

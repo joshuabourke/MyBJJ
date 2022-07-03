@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//The idea of this view is to display stats in a text format compared to graph.
+
 struct StatsTextView: View {
     var titleName: String
     var valueName: String
@@ -20,11 +22,8 @@ struct StatsTextView: View {
         }//: VSTACK
         
         .padding()
-        .background(Color.clear)
+        .background(Color.secondary.opacity(0.1))
         .cornerRadius(20)
-        .shadow(radius: 4)
-        
-        
     }
 }
 

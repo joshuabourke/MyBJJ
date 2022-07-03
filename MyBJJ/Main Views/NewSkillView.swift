@@ -34,6 +34,7 @@ struct NewSkillView: View {
     
     //MARK: - ALERT
     @State var showAlert = false
+    
     //MARK: - BODY
     var body: some View {
         VStack{
