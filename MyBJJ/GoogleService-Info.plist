@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>696632308512-pdua83ovl4ve05tf70o9c9ut8e7ndglq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.696632308512-pdua83ovl4ve05tf70o9c9ut8e7ndglq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyARs0RmHexT9c9Bu0dy2BP-CfhnY9PPDvE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>696632308512</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.joshbourke.MyBJJ</string>
+	<key>PROJECT_ID</key>
+	<string>mybjj-c7a06</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mybjj-c7a06.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:696632308512:ios:ee08d99daacb5d36d05d45</string>
+</dict>
+</plist>
