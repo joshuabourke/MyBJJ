@@ -12,6 +12,8 @@ import UserNotifications
 
 class NotificationManager {
     
+    let requestID = UUID().uuidString
+    
     static let instance = NotificationManager() // Singleton
     //Eg a single instance of the NotificationManage to use the same one through out the application
     
@@ -41,6 +43,7 @@ class NotificationManager {
         content.sound = .default
         content.badge = 1
         
+        
         //Time
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         //Calendar
@@ -61,12 +64,20 @@ class NotificationManager {
 //
 //        region.notifyOnExit = false
 //        region.notifyOnEntry = true
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        //I am trying to be able to fetch the id of the request so when the users wants to remove a notification i can remove a specific one instead of having to just remove them all.
+        
+        let request = UNNotificationRequest(identifier: requestID, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
     
     func cancelAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
+    
+    func cancelSpecificNotification(notificationID: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationID])
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notificationID])
     }
 }

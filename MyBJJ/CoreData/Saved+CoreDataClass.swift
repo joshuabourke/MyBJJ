@@ -12,3 +12,8 @@ import CoreData
 public class SavedRolls: NSManagedObject {
     
 }
+
+@objc(Reminders)
+public class Reminders: NSManagedObject {
+    
+}

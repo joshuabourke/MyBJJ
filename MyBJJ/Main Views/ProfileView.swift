@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//This is going to be used to make the new reminders list using coredata
 struct LocalReminders {
     var id = UUID()
     var hours: Int
@@ -15,8 +16,18 @@ struct LocalReminders {
 }
 
 struct ProfileView: View {
-    //MARK: - PROPERTIES
     
+    
+    //MARK: - CORE DATA FOR REMINDERS
+    
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(entity: Reminders.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Reminders.reminderDay, ascending: false)])
+    
+    
+    var savedSubs: FetchedResults<Reminders>
+    
+    //MARK: - PROPERTIES
     @State var hours: Int = 0
     @State var mintues: Int = 0
     @State var dayOfTheWeek: Int = 0
@@ -25,7 +36,7 @@ struct ProfileView: View {
     @Binding var closeProfileView: Bool
     @State var didTapAddReminders: Bool = false
     
-    //MARK: - TESTING
+    //MARK: - BELT COLOURS
     @State var didChangeBeltColour: Color = .blue
     @State var didChangeBeltStripes = [Color.white, Color.black, Color.black, Color.black]
     @State var didChangeStipeBackGround: Color = .black
@@ -33,10 +44,13 @@ struct ProfileView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack{
+                HStack {
                     Text("Rank")
-                        .font(.system(size: 22))
+                        .font(.title)
                         .bold()
                         .padding()
+                    Spacer()
+                }//: HSTACK
                     //MARK: - BELT RANK VIEW
                     //This view is just to display the users belt rank. I havent started collecting data based on the belt rank but that is a possibility in the future.
                 BeltViewMenu(beltColor: didChangeBeltColour, beltStripColors: didChangeBeltStripes, stripeBackGroundColor: didChangeStipeBackGround)
@@ -52,11 +66,11 @@ struct ProfileView: View {
                         }
                     Spacer()
                 HStack {
-                    Text("REMINDERS")
-                            .font(.system(size:22))
+                    Text("Reminders")
+                        .font(.title)
                         .bold()
                         .padding()
-                    
+                    Spacer()
                 }//: HSTACK
                     //MARK: - LIST OF REMINDERS
                     //Thinking of using this list to display to the user what reminders they have active at the moment.

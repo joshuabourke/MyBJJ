@@ -19,8 +19,7 @@ class SubViewModel {
     
     
     var savedSubs: FetchedResults<SavedRolls>
-    
-    //MARK: - PIE GRAPH
+
     //MARK: - WINS
     @AppStorage("chokeholdCount") var chokeholdCount = 0
     @AppStorage("lowerBodyCount") var lowerBodyCount = 0

@@ -33,7 +33,7 @@ struct ContentView: View {
                 StatsView()
                     .tabItem {
                         Text("Stats")
-                        Image(systemName: "text.alignleft")
+                        Image(systemName: "align.vertical.bottom.fill")
                     }
                     .tag(1)
                     .onAppear() {

@@ -10,16 +10,32 @@ import SwiftUI
 struct SubmissionListRowChokes: View {
     //MARK: - PROPERTIES
     let todaysDate = Date().formatDate()
-   @State var submissionListModel: SubmissionListModel
+    @State var submissionListModel: SubmissionListModel
+    
     //MARK: - BODY
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment:.center){
                 VStack{
                     HStack{
-                        Image(systemName: "figure.stand")
-                            .foregroundColor(submissionListModel.winOrLoss ? .green : .red)
-                            .font(.system(size: 22))
+                        ZStack {
+                            let checkAreaOfSubmission = checkSubmissionArea()
+                            Image(systemName: "figure.stand")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.accentColor)
+                            ListViewItemSubAreaImage("figure.stand", width: 20, height: 20, offSetY: checkAreaOfSubmission.1)
+                                .offset(y:checkAreaOfSubmission.0)
+                            //ListViewItemSubAreaImage off set 0 with width and height 20 will indicate body.
+                            
+                            //ListViewItemSubAreaImage offset 15 with offset -15 on ListViewItemSubAreaImage with width and height 20 to show an attack to the head or a choke hold
+                            
+                            //ListViewItemSubAreaImage offset -17.5 with offset 17.5 on ListViewItemSubAreaImage with width and height 20 to show an attack to the lowerbody or legs.
+                                .foregroundColor(submissionListModel.winOrLoss ? .green : .red)
+                        }//: ZSTACK
+                            
+                            
                         Text(submissionListModel.winOrLoss ? "Win" : "Loss")
                             .foregroundColor(submissionListModel.winOrLoss ? .green : .red)
                             .font(.system(size: 18))
@@ -42,13 +58,42 @@ struct SubmissionListRowChokes: View {
         }
         .padding()
     }
+    
+    //MARK: - FUNCTIONS
+    //The idea behind this func is to read the of the submission. Where on the body has it been performed and then place the new affected area cropped  image offset over that area.
+    
+    //This function is quite successful in showing more detail where the submission was performed.
+    //Now to use this same sort of function but in a larger scale for a stat view.
+    //This function checks to see what subtype the user has selected. Then displays a coloured cropped portion of the figure stand SF symbol over the top of the default blue one.
+    func checkSubmissionArea() -> (CGFloat, CGFloat) {
+        
+        var offsetY: CGFloat = 0
+        
+        var listViewItemSubAreaImageOffsetY: CGFloat = 0
+        
+        if submissionListModel.upperLowerChoke == "Chokehold" {
+            listViewItemSubAreaImageOffsetY = 15
+            offsetY = -15
+        }
+        else if submissionListModel.upperLowerChoke == "Upper Body" {
+            listViewItemSubAreaImageOffsetY = 1
+            offsetY = -1
+        }
+        else if submissionListModel.upperLowerChoke == "Lower Body" {
+            listViewItemSubAreaImageOffsetY = -17.5
+            offsetY = 17.5
+        }
+        
+        return (offsetY, listViewItemSubAreaImageOffsetY)
+    }
 }
     
     //MARK: - PREVIEW
 struct SubmissionListRow_Previews: PreviewProvider {
     static var previews: some View {
         
-        SubmissionListRowChokes(submissionListModel: SubmissionListModel(upperLowerChoke: "Chokehold", sub: "Rear Naked", date:"Sunday, May 21, 2022", winOrLoss: true))
+        SubmissionListRowChokes(submissionListModel:SubmissionListModel(upperLowerChoke: "Chokehold", sub: "Rear Naked", date:"Sunday, May 21, 2022", winOrLoss: true))
+        
             .previewLayout(.sizeThatFits)
             .padding()
     }
