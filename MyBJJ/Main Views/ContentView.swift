@@ -9,19 +9,23 @@ import SwiftUI
 
 
 struct ContentView: View {
+    //I am trying to figure out how to send the user from stats view across into the sub list view and then toggle the login screen.
+    
     //MARK: - PROPERTIES
     @State private var isNewBJJItemOpen: Bool = false
     @State private var winMoreThanZero: Bool = false
     @State private var lossMoreThanZero: Bool = false
     
-    //MARK: - UPDATING STAT VIEW (From main view)
+    //These 2 state var's are used to open the profile view from the stat view.
     @State private var currentTab = 0
+    @State private var openProfileView: Bool = false
+    //MARK: - UPDATING STAT VIEW (From main view)
     @StateObject var vm = AddingNewSubViewModel(myBJJUser: .init(data: ["uid" : "bQsUeLnTOXg27Bp06PaUayRXQv82", "email": "josh@gmail.com"]))
     @StateObject var subListVM = SubListViewModel()
     //MARK: - BODY
     var body: some View {
         TabView(selection: $currentTab){
-                SubListView()
+            SubListView(needsToLogin: $openProfileView)
                     .tabItem {
                         Text("Saved")
                         Image(systemName: "bookmark")
@@ -30,7 +34,7 @@ struct ContentView: View {
                             self.currentTab = 0
                         }
                     .tag(0)
-                StatsView()
+            StatsView(tabSelection: $currentTab, openProfileFromStats: $openProfileView)
                     .tabItem {
                         Text("Stats")
                         Image(systemName: "align.vertical.bottom.fill")

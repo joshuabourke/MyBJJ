@@ -12,7 +12,7 @@ struct NotificationSettingsView: View {
     //MARK: - PROPERTIES
     
     @Environment(\.presentationMode) var presentationMode
-    
+    @Environment(\.managedObjectContext) var moc
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
@@ -38,7 +38,8 @@ struct NotificationSettingsView: View {
     @State var userPickedTime: String = ""
     @State var userPickedHours: String = ""
     @State var userPickedMinutes: String = ""
-
+    @State var localNotificationID = UUID()
+    
     @Binding var hours: Int
     @Binding var mintues: Int
     @Binding var dayOfTheWeek: Int
@@ -93,9 +94,9 @@ struct NotificationSettingsView: View {
                 hours = Int(userPickedHours) ?? 0
                 mintues = Int(userPickedMinutes) ?? 0
                 dayOfTheWeek = dayOfTheWeekInt
-                
+                addItem()
                 //Once the user presses down the add button it will then add the reminder to their MyBJJ and they will then be reminded.
-                NotificationManager.instance.scheduleNotification(hours: hours, mintue: mintues, weekday: dayOfTheWeek)
+                NotificationManager.instance.scheduleNotification(hours: hours, mintue: mintues, weekday: dayOfTheWeek, requestId: localNotificationID)
                 
                 self.presentationMode.wrappedValue.dismiss()
             } label: {
@@ -116,7 +117,6 @@ struct NotificationSettingsView: View {
         }
     }
     //MARK: - FUNCTIONS
-    
     func returningNumbersForDays() -> Int {
         var dayNumber: Int = 0
         
@@ -143,6 +143,24 @@ struct NotificationSettingsView: View {
         }
         return dayNumber
     }
+    
+    //MARK: - CORE DATA FUNCTION
+    func addItem () {
+        
+        let newItem = UserReminders(context: moc)
+        newItem.reminderDay = dayOfTheWeekInt
+        newItem.reminderHours = Int(userPickedHours) ?? 0
+        newItem.reminderMinutes = Int(userPickedMinutes) ?? 0
+        newItem.reminderID = localNotificationID
+        do{
+            try moc.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }//: addItem
 }
     //MARK: - PREVIEW
 struct NotificationSettingsView_Previews: PreviewProvider {

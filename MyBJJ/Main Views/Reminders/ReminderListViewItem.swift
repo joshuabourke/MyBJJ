@@ -22,16 +22,19 @@ struct ReminderListViewItem: View {
     var body: some View {
         HStack {
             Image(systemName: "bell")
-                .font(.title2.bold())
+                .font(.system(size: 20).bold())
                 .foregroundColor(.accentColor)
             Spacer()
             Text(intIntoDayOfTheWeek(dayNumber:dayOfTheWeek))
-                .font(.title.bold())
+                .font(.system(size: 20))
+                .bold()
             //This string here takes in hours and mintues are Int's
             let result24HourAmOrPm = changingAMAndPMTime(hoursToChange: self.hours, minutesToChange: self.minutes)
             Text("\(result24HourAmOrPm.0):\(result24HourAmOrPm.1)\(result24HourAmOrPm.2)")
-                .font(.title.bold())
+                .font(.system(size: 20))
+                .bold()
         }//: Hstack
+        .padding()
     }
 
     //I need to make a function that will take 24 hour time and convert it into normal hours and switch am or pm accordinly.

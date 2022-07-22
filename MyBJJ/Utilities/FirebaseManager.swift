@@ -68,6 +68,16 @@ class SubListViewModel: ObservableObject {
         try? FirebaseManager.shared.auth.signOut()
     }
     
+    func handleAccountDeletion() {
+        FirebaseManager.shared.auth.currentUser?.delete(completion: { error in
+            if let error = error {
+                print("Could not delete user from Firebase FireStore ERROR:\(error)")
+            } else {
+                print("Successfully deleted user from Firebase FireStore")
+            }
+        })
+    }
+    
 //    @Published var subListItem:
     
     

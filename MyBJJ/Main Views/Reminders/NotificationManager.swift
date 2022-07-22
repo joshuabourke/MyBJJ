@@ -11,8 +11,7 @@ import UserNotifications
 //Have to import this to get access to auth and many other thing
 
 class NotificationManager {
-    
-    let requestID = UUID().uuidString
+
     
     static let instance = NotificationManager() // Singleton
     //Eg a single instance of the NotificationManage to use the same one through out the application
@@ -36,12 +35,13 @@ class NotificationManager {
     }
     //MARK: - NOTES FOR NOTIFICATIONS
     //Calling the same notification function 2 times at least with different parameters seems to call 2 separate notifications. next step is to find a way the user can then input different notifications. But also so they can remove specific reminders from theirlist of reminders.
-    func scheduleNotification(hours: Int, mintue: Int, weekday: Int) {
+    func scheduleNotification(hours: Int, mintue: Int, weekday: Int, requestId: UUID) {
         let content =   UNMutableNotificationContent()
         content.title = "MyBJJ"
         content.subtitle = "Remember to track your progress!"
         content.sound = .default
         content.badge = 1
+        
         
         
         //Time
@@ -67,7 +67,7 @@ class NotificationManager {
         
         //I am trying to be able to fetch the id of the request so when the users wants to remove a notification i can remove a specific one instead of having to just remove them all.
         
-        let request = UNNotificationRequest(identifier: requestID, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: requestId.uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
     

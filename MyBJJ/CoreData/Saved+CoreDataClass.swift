@@ -13,7 +13,7 @@ public class SavedRolls: NSManagedObject {
     
 }
 
-@objc(Reminders)
-public class Reminders: NSManagedObject {
+@objc(UserReminders)
+public class UserReminders: NSManagedObject {
     
 }

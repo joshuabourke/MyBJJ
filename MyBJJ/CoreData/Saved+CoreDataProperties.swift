@@ -23,17 +23,17 @@ extension SavedRolls: Identifiable {
     
 }
 
-extension Reminders {
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Reminders> {
-        return NSFetchRequest<Reminders>(entityName: "Reminders")
+extension UserReminders {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<UserReminders> {
+        return NSFetchRequest<UserReminders>(entityName: "UserReminders")
     }
     @NSManaged public var reminderDay: Int
-    @NSManaged public var reminderHour: Int
+    @NSManaged public var reminderHours: Int
     @NSManaged public var reminderMinutes: Int
     @NSManaged public var reminderID: UUID
     
 }
 
-extension Reminders: Identifiable {
+extension UserReminders: Identifiable {
     
 }

@@ -93,6 +93,7 @@
 		08E8B57B2867E15200039D76 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationSettingsView.swift; path = "MyBJJ/Main Views/Reminders/NotificationSettingsView.swift"; sourceTree = SOURCE_ROOT; };
 		08E8B57C2867E15200039D76 /* ReminderListViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReminderListViewItem.swift; path = "MyBJJ/Main Views/Reminders/ReminderListViewItem.swift"; sourceTree = SOURCE_ROOT; };
 		08E8B57D2867E15200039D76 /* ToggleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleButtonView.swift; path = "MyBJJ/Main Views/Reminders/ToggleButtonView.swift"; sourceTree = SOURCE_ROOT; };
+		08EF4933287F7AD800E5DEC6 /* MyBJJ.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyBJJ.entitlements; sourceTree = "<group>"; };
 		08FFD9C72814A5FB00F18FB7 /* PieChartLegend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartLegend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +236,7 @@
 		08E1877528058442006E3D01 /* MyBJJ */ = {
 			isa = PBXGroup;
 			children = (
+				08EF4933287F7AD800E5DEC6 /* MyBJJ.entitlements */,
 				088BE09A28222A5C007B3B07 /* Utilities */,
 				08D452E0280FBEC100E57394 /* Extension */,
 				0838B1C32807D17B00389711 /* Models */,
@@ -510,6 +512,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyBJJ/MyBJJ.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyBJJ/Preview Content\"";
@@ -540,6 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyBJJ/MyBJJ.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyBJJ/Preview Content\"";

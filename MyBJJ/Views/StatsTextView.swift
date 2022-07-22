@@ -10,6 +10,7 @@ import SwiftUI
 //The idea of this view is to display stats in a text format compared to graph.
 
 struct StatsTextView: View {
+    @Environment(\.colorScheme) var colorScheme
     var titleName: String
     var valueName: String
     
@@ -20,10 +21,7 @@ struct StatsTextView: View {
             Text(valueName)
                 .font(.title.bold())
         }//: VSTACK
-        
         .padding()
-        .background(Color.secondary.opacity(0.1))
-        .cornerRadius(20)
     }
 }
 
