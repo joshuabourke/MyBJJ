@@ -11,8 +11,4 @@ var subsData: [SubmissionListModel] = [SubmissionListModel(upperLowerChoke: "Cho
                                        SubmissionListModel(upperLowerChoke: "Upper Body", sub: "Arm Bar", date: "Sunday, May 22, 2022", winOrLoss: false)]
 
 
-var chokeHolds = ["Rear Naked", "Head & Arm", "Triangle"]
 
-var upperBody = ["Arm Bar", "Wrist Lock", "Americana"]
-
-var lowerBody = ["Straight Leg Lock", "Toe Hold", "Knee Bar"]

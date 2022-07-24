@@ -50,6 +50,7 @@ struct ProfileView: View {
     @EnvironmentObject var subListVM: SubListViewModel
     @Binding var closeProfileView: Bool
     @State var didTapAddReminders: Bool = false
+    @State var didTapDeleteAccountButton: Bool = false
     
     //MARK: - BELT COLOURS
     @State var didChangeBeltColour: Color = .blue
@@ -68,6 +69,7 @@ struct ProfileView: View {
                 NotificationSettingsView(hours: $hours, mintues: $mintues, dayOfTheWeek: $dayOfTheWeek)
             }//: Sheet
         }//: Scroll
+
     }
     
     //MARK: - EXTRACTED VIEWS
@@ -239,11 +241,10 @@ struct ProfileView: View {
                 //This button is so if the user would like to remove all thier account data from the firestore.
                 Button {
                     print("Account Delete Button pressed")
-                    subListVM.handleAccountDeletion()
-                    subListVM.isUserCurrentlyLoggedOut.toggle()
-                    withAnimation {
-                        closeProfileView.toggle()
-                    }
+                    didTapDeleteAccountButton.toggle()
+//                    withAnimation {
+//                        closeProfileView.toggle()
+//                    }
                 } label: {
                     Image(systemName: "trash")
                         .font(.body.bold())
@@ -259,6 +260,14 @@ struct ProfileView: View {
             }//DELETE ACCOUNT GROUPING
             .padding()
             .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
+            .actionSheet(isPresented: $didTapDeleteAccountButton, content: {
+                .init(title: Text("WAIT!"),message: Text("Are you sure you would like to delete your MyBJJ account permanently"), buttons: [.default(Text("No").bold(),action: {
+                    didTapDeleteAccountButton = false
+                }), .destructive(Text("Yes"),action: {
+                    subListVM.handleAccountDeletion()
+                    subListVM.isUserCurrentlyLoggedOut.toggle()
+                })])
+            })
         }//: VSTACK
         .padding()
     }//: EXTRACTED PROFILE VIEW.

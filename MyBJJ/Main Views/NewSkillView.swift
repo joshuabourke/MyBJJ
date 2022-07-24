@@ -35,6 +35,17 @@ struct NewSkillView: View {
     //MARK: - ALERT
     @State var showAlert = false
     
+    
+    //MARK: - NEW SUBMISSION LISTS(ARRAYS)
+    //They where on their own before as kind of a global var. Changing them to be in the actual fine of new sub.
+    //Reason being is because I am trying to fix a visual problem where when changing to a different sub type it flickers.
+    
+    //Add more subs here to expand on the new sub lists.
+    var chokeHolds = ["Rear Naked", "Arm Triangle", "Triangle" ,"Guillotine", "Ezekieal", "Baseball bat", "D'arce", "North South", "Crucifix" ,"Anaconda", "Gogoplata", "Von Fluke", "Bulldog Choke", "Inverted Triangle", "Back Triangle"].sorted()
+
+    var upperBody = ["Arm Bar", "Wrist Lock", "Americana", "Kimura", "Arm Crush"].sorted()
+
+    var lowerBody = ["Straight Leg Lock", "Toe Hold", "Knee Bar" ,"Calf Slicer", "Inside Heel Hook", "Outside Heel Hook"].sorted()
     //MARK: - BODY
     var body: some View {
         VStack{

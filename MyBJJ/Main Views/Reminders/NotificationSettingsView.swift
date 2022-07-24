@@ -56,6 +56,12 @@ struct NotificationSettingsView: View {
                         .font(.title2.bold())
                 }.padding()
             }//: Hstack
+            HStack{
+                Text("Reminders")
+                    .font(.title.bold())
+                Spacer()
+            }//: HSTACK
+            .padding(.horizontal)
             Spacer()
             
             //MARK: - PICKER FOR TIME
@@ -107,9 +113,10 @@ struct NotificationSettingsView: View {
             .buttonStyle(RectangleButton())
             .frame(width: 100, height: 45)
 
-            
-            Text("This is your Time \(currentTime, formatter: dateFormatter) Day Number \(dayOfTheWeekInt)\n \(userPickedTime) <-- User picked time\n \(userPickedHours) <--- User picked hours\n \(userPickedMinutes) <-- User picked minutes")
-                .padding()
+            //MARK: - Testing
+            //This is text view below is for me to check and make sure all the values are coming out correctly
+//            Text("This is your Time \(currentTime, formatter: dateFormatter) Day Number \(dayOfTheWeekInt)\n \(userPickedTime) <-- User picked time\n \(userPickedHours) <--- User picked hours\n \(userPickedMinutes) <-- User picked minutes")
+//                .padding()
             Spacer()
         }//: Vstack
         .alert(isPresented: $showAlertToggle) { () -> Alert in
