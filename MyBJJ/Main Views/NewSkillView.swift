@@ -197,6 +197,7 @@ struct NewSkillView: View {
 }
 
 struct FirebaseConstants {
+    //These are constants for the firebase to id what is what, this is done via strings. It is easier for me to make them constants so there isnt any confusion to be had while coding.
     //MARK: - TO SAVE INFO FOR THE LIST ITEMS
     static let userId = "userId"
     static let winOrLoss = "WinOrLoss"
