@@ -49,6 +49,37 @@ struct ListViewItemSubAreaImage: View {
         
     }
 }
+//This is to show the area of submission in gi. This will crop a image of gi man and place it over the top of another one. Therefore showing the user what area of the body the submission was performed.
+struct ListViewItemSubAreaGIImage: View {
+    //MARK: - PROPERTIES
+    
+    let imageNameGi: String
+    let widthGi: CGFloat
+    let heightGi: CGFloat
+    let offSetYGi: CGFloat
+    
+    init(_ imageNameGi: String, widthGi: CGFloat, heightGi: CGFloat, offSetYGi: CGFloat) {
+        self.imageNameGi = imageNameGi
+        self.widthGi = widthGi
+        self.heightGi = heightGi
+        self.offSetYGi = offSetYGi
+    }
+    
+    //MARK: - BODY
+    var body: some View {
+        ZStack{
+            Image(imageNameGi)
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: widthGi, height: heightGi)
+                .offset(y: offSetYGi)
+        }//: ZSTACK
+        .cornerRadius(0)
+        .frame(width: widthGi, height: heightGi)
+    }
+}
+
     //MARK: - PREVIEW
 struct ListViewItemSubAreaImage_Previews: PreviewProvider {
     static var previews: some View {

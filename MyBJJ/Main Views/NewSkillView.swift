@@ -14,8 +14,7 @@ struct NewSkillView: View {
     var subVM = SubViewModel()
     @Environment(\.presentationMode) var presentationMode
     @State private var newSubmission: String = ""
-    //MARK: - WIN/LOSS PICKER
-    var pickerWinOrLoss = ["Win", "Loss"]
+
 
     @StateObject var newSubVM: AddingNewSubViewModel
     
@@ -23,14 +22,22 @@ struct NewSkillView: View {
     @State var fileName: String = ""
     @State var fileItem: Int = 0
     
+    //MARK: - WIN/LOSS PICKER
+    var pickerWinOrLoss = ["Win", "Loss"]
     //MARK: - SUB PICKER
     var pickerSubmissions = ["Chokehold", "Upper Body", "Lower Body"]
+    //MARK: - NOGI OR GI PICKER
+    var pickerNoGiOrGi = ["NoGi", "Gi"]
     @State var selectedSub: String = ""
     @State var pickerWinOrLossIndex: String = "Win"
     @State var pickerSelectionIndex: String = "Chokehold"
+    @State var pickerGiorNoGiIndex: String = "NoGi"
     
     @Binding var isNewSubmissionOpen: Bool
     @State var completedSubmissions = subsData
+    
+    //This is for the user to select either gi or no gi This will then be passed into the sublistView. Then it will see if either gi or nogi was selected. Then it will add a new list item that will show either gi or no gi.
+    @Binding var noGiOrGiSelection: Bool
     
     //MARK: - ALERT
     @State var showAlert = false
@@ -41,7 +48,7 @@ struct NewSkillView: View {
     //Reason being is because I am trying to fix a visual problem where when changing to a different sub type it flickers.
     
     //Add more subs here to expand on the new sub lists.
-    var chokeHolds = ["Rear Naked", "Arm Triangle", "Triangle" ,"Guillotine", "Ezekieal", "Baseball bat", "D'arce", "North South", "Crucifix" ,"Anaconda", "Gogoplata", "Von Fluke", "Bulldog Choke", "Inverted Triangle", "Back Triangle"].sorted()
+    var chokeHolds = ["Rear Naked", "Arm Triangle", "Triangle" ,"Guillotine", "Ezekiel", "Baseball bat", "D'arce", "North South", "Crucifix" ,"Anaconda", "Gogoplata", "Von Fluke", "Bulldog Choke", "Inverted Triangle", "Back Triangle"].sorted()
 
     var upperBody = ["Arm Bar", "Wrist Lock", "Americana", "Kimura", "Arm Crush"].sorted()
 
@@ -76,22 +83,38 @@ struct NewSkillView: View {
             }//: HSTACK
             
             //MARK: - WIN/LOSS PICKER
+            //This is for the user to pick whether or not they wont or they lost.
             Picker("Win or Loss", selection: $pickerWinOrLossIndex) {
                 ForEach(pickerWinOrLoss, id:\.self) {
                     Text($0)
                 }
             }//: PICKER WIN/LOSS
+            
             .pickerStyle(.segmented)
-            .padding(30)
+            .padding()
+            
+            //MARK: - GI OR NO-GI PICKER
+            //This will allow the user to see if the submission was with Gi or nogi
+            Picker("NoGi or Gi", selection: $pickerGiorNoGiIndex) {
+                ForEach(pickerNoGiOrGi, id:\.self) {
+                    Text($0)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding()
+            .onChange(of: pickerGiorNoGiIndex) { newValue in
+                selectedSub = ""
+            }
             
             //MARK: - SUB TYPE PICKER
+            //This picker is so the user can pick what area on the body the sub occured
             Picker("New Submission", selection: $pickerSelectionIndex){
                 ForEach(pickerSubmissions, id:\.self) {
                     Text($0)
                 }
             }//: PICKER
             .pickerStyle(.segmented)
-            .padding(30)
+            .padding()
             .onChange(of: pickerSelectionIndex) { newValue in
                 selectedSub = ""
             }

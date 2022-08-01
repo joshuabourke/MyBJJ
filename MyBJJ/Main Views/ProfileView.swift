@@ -177,7 +177,43 @@ struct ProfileView: View {
             //                .frame(width: 220, height: 45)
             //                .padding()
             //THIS IS COMMENTED OUT FOR THE TIME BEING. I would also like this to remove all the saved items in the list above this.
-            
+            Group {
+                VStack {
+                    HStack {
+                        Text("Support")
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                        Image(systemName: "ant")
+                            .font(.body.bold())
+                    }//: HSTACK
+                    HStack{
+                        Text("If you come across any bugs or issues with MyBJJ, feel free to send an email through to support.")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Spacer()
+                    }//: HSTACK
+                    Divider().padding(.vertical,4)
+                    //MARK: - MAILTO LINK
+                    //This link below should send the user to their default email application. Once they are there it will prefill a support ticket for them as in the subject of the email and the emial address.
+                    Button  {
+                        print("Feedback button pressed")
+                        sendEmailToSupport()
+                    } label: {
+                        Image(systemName: "ant")
+                            .font(.body.bold())
+                        Text("Help!")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                    }
+                    .buttonStyle(RectangleButton())
+                    .frame(width: 220, height: 45)
+                }//: VSTACK
+            }//: FEEDBACK GROUP
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
             Group{
                 VStack{
                     HStack {
@@ -272,6 +308,17 @@ struct ProfileView: View {
         .padding()
     }//: EXTRACTED PROFILE VIEW.
     
+    
+    //MARK: - FUNCTIONS
+    //MARK: - MAILTO FUNC
+    //This function should either open up the mail app or.. It should open the default mail app the user has set on their phone. It will prefill the email section with the support email whilst also filling the subject field with "MyBJJ feeback form"
+    func sendEmailToSupport() {
+        let mailtoString = "mailto:mybjj.apphelp@gmail.com?subject=MyBJJ Feedback Form".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let mailtoURL = URL(string: mailtoString!)!
+        if UIApplication.shared.canOpenURL(mailtoURL) {
+            UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
+        }
+    }
     
     //MARK: - CORE DATA FUNCTIONS
     //Here are the Coredata functions ill be using.

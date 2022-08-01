@@ -27,6 +27,7 @@
 		0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0843AB59281A6225007ADCEF /* SubViewModel.swift */; };
 		0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0843AB5D281A68F7007ADCEF /* StatsView.swift */; };
 		08835C4C2892716D005D121B /* NOTES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08835C4B2892716D005D121B /* NOTES.swift */; };
+		08835C4E2894F259005D121B /* TestingNewGiGraphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08835C4D2894F259005D121B /* TestingNewGiGraphic.swift */; };
 		088BE0932820F1D5007B3B07 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0922820F1D5007B3B07 /* FirebaseAuth */; };
 		088BE0952820F1D5007B3B07 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0942820F1D5007B3B07 /* FirebaseFirestore */; };
 		088BE0972820F1D5007B3B07 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0962820F1D5007B3B07 /* FirebaseStorage */; };
@@ -74,6 +75,7 @@
 		0843AB59281A6225007ADCEF /* SubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubViewModel.swift; sourceTree = "<group>"; };
 		0843AB5D281A68F7007ADCEF /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		08835C4B2892716D005D121B /* NOTES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOTES.swift; sourceTree = "<group>"; };
+		08835C4D2894F259005D121B /* TestingNewGiGraphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingNewGiGraphic.swift; sourceTree = "<group>"; };
 		088BE09828222640007B3B07 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		088BE09B28222A9C007B3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		088BE09E282231E3007B3B07 /* MyBJJUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBJJUser.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				0843AB5D281A68F7007ADCEF /* StatsView.swift */,
 				0838B1D028081D1200389711 /* Selected + Deselect rows */,
 				0838B1DD280D0C9F00389711 /* Pie Chart View */,
+				08835C4D2894F259005D121B /* TestingNewGiGraphic.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				0838B1DF280D0CB700389711 /* PieChartView.swift in Sources */,
 				08E8B57F2867E15200039D76 /* ToggleButton.swift in Sources */,
 				088BE09928222640007B3B07 /* LoginView.swift in Sources */,
+				08835C4E2894F259005D121B /* TestingNewGiGraphic.swift in Sources */,
 				0843AB58281A6199007ADCEF /* SubListView.swift in Sources */,
 				08E8B5042848978F00039D76 /* ForgotPasswordUtil.swift in Sources */,
 				0838B1E3280D12D000389711 /* PieChartRowsView.swift in Sources */,

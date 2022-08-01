@@ -42,6 +42,9 @@ struct SubListView: View {
     //Showing log out alert
     @State var presentSigninAlert: Bool = false
     
+    //This is just a switch to choose if the user has selected either Gi or noGi based on true of fale. Nogi if true and gi if false. This will add a differnt item into the list of their recorded submissions.
+    @State var noGiOrGiSelection: Bool = true
+    
     //Showing full screen profile view.
     @State var showProfileView: Bool = false
     //MARK: - BODY
@@ -79,7 +82,7 @@ struct SubListView: View {
                                 ForEach(vm.submissions) { submissions in
                                     NavigationLink(destination: Text("This View will show details in future")) {
                                         
-                                        SubmissionListRowChokes(submissionListModel: SubmissionListModel(upperLowerChoke: submissions.upperLowerChoke, sub: submissions.sub, date: formatTransactionTimestamp(submissions.date), winOrLoss: winOrLossIntoBool(winOrLoss: submissions.winOrLoss)))
+                                        SubmissionListRowChokes(submissionListModel: SubmissionListModel(upperLowerChoke: submissions.upperLowerChoke, sub: submissions.sub, date: formatTransactionTimestamp(submissions.date), winOrLoss: winOrLossIntoBool(winOrLoss: submissions.winOrLoss)), noGiOrGi: $noGiOrGiSelection)
                                     }
                                 }
                                 .onDelete(perform: delete)
@@ -184,7 +187,7 @@ struct SubListView: View {
             vm.fetchAllStats()
         }) {
             
-            NewSkillView(newSubVM: AddingNewSubViewModel(myBJJUser: .init(data: ["uid": "bQsUeLnTOXg27Bp06PaUayRXQv82", "email" : "josh@gmail.com"])), isNewSubmissionOpen: $isNewBJJItemOpen)
+            NewSkillView(newSubVM: AddingNewSubViewModel(myBJJUser: .init(data: ["uid": "bQsUeLnTOXg27Bp06PaUayRXQv82", "email" : "josh@gmail.com"])), isNewSubmissionOpen: $isNewBJJItemOpen, noGiOrGiSelection: $noGiOrGiSelection)
         }
         //MARK: - FULL SCREEN LOG IN SCREEN / CREATE USER
         //This is the full screen cover for the user to log in or create an account. Sign in with apple is also available.
