@@ -28,6 +28,7 @@
 		0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0843AB5D281A68F7007ADCEF /* StatsView.swift */; };
 		08835C4C2892716D005D121B /* NOTES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08835C4B2892716D005D121B /* NOTES.swift */; };
 		08835C4E2894F259005D121B /* TestingNewGiGraphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08835C4D2894F259005D121B /* TestingNewGiGraphic.swift */; };
+		08835C6B28A20BA9005D121B /* ListFilterHScrollToggles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08835C6A28A20BA9005D121B /* ListFilterHScrollToggles.swift */; };
 		088BE0932820F1D5007B3B07 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0922820F1D5007B3B07 /* FirebaseAuth */; };
 		088BE0952820F1D5007B3B07 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0942820F1D5007B3B07 /* FirebaseFirestore */; };
 		088BE0972820F1D5007B3B07 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 088BE0962820F1D5007B3B07 /* FirebaseStorage */; };
@@ -76,6 +77,7 @@
 		0843AB5D281A68F7007ADCEF /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		08835C4B2892716D005D121B /* NOTES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOTES.swift; sourceTree = "<group>"; };
 		08835C4D2894F259005D121B /* TestingNewGiGraphic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingNewGiGraphic.swift; sourceTree = "<group>"; };
+		08835C6A28A20BA9005D121B /* ListFilterHScrollToggles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFilterHScrollToggles.swift; sourceTree = "<group>"; };
 		088BE09828222640007B3B07 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		088BE09B28222A9C007B3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		088BE09E282231E3007B3B07 /* MyBJJUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBJJUser.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				08E8B5462856AA3400039D76 /* StatsTextView.swift */,
 				0839B60C28714008007076F5 /* BeltViewMenu.swift */,
 				0839B62A2872A571007076F5 /* ListViewItemSubAreaImage.swift */,
+				08835C6A28A20BA9005D121B /* ListFilterHScrollToggles.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				08DD7067281641420049B719 /* BeltView.swift in Sources */,
 				0838B1D6280A158100389711 /* MyPersistentController.swift in Sources */,
 				088BE0A128223A74007B3B07 /* ImagePicker.swift in Sources */,
+				08835C6B28A20BA9005D121B /* ListFilterHScrollToggles.swift in Sources */,
 				0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */,
 				08E1877728058442006E3D01 /* MyBJJApp.swift in Sources */,
 				0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */,

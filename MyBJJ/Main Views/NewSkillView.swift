@@ -154,9 +154,9 @@ struct NewSkillView: View {
                     showAlert = true
                 } else {
                     //1.
-                    newSubVM.addDataSubmissions(winOrLoss: pickerWinOrLossIndex, subType: pickerSelectionIndex, sub: selectedSub)
+                    newSubVM.addDataSubmissions(winOrLoss: pickerWinOrLossIndex, subType: pickerSelectionIndex, sub: selectedSub, giOrNoGi: pickerGiorNoGiIndex)
                     //2.
-                    increaseSubs()
+                    increaseSubs(subArea: pickerSelectionIndex, WinOrLoss: pickerWinOrLossIndex, GiOrNoGi: pickerGiorNoGiIndex)
                     //3.
                     newSubVM.getDataSubmissions()
                     //4.
@@ -181,35 +181,110 @@ struct NewSkillView: View {
     
     //MARK: - FUNCTION
     
-     func increaseSubs(){
+    func increaseSubs(subArea: String, WinOrLoss: String, GiOrNoGi: String){
         
-        //MARK: - WINS
-        if pickerSelectionIndex == "Lower Body" && pickerWinOrLossIndex == "Win"{
+        //MARK: - SWITCH
+        //Here I am looking to make a switch statement over these values instead of having to keep making more if else.
+         let result = (subArea,WinOrLoss,GiOrNoGi)
+        
+        switch result {
+        //MARK: - SWITCH LOWER BODY CASE
+        case ("Lower Body", "Win", "Gi"):
+            print("increasesubs switch Result: Lower Body, Win, Gi")
+            newSubVM.addLowerGiWin(lowerWin: 1)
+            //I will be adding in more graphs for these
+            
+        case ("Lower Body", "Loss", "Gi"):
+            print("increasesubs switch Result: Lower Body, Loss, Gi")
+            newSubVM.addLowerGiLoss(lowerLoss: 1)
+            //I will be adding in more graphs for these
+            
+        case ("Lower Body", "Win", "NoGi"):
+            print("increasesubs switch Result: Lower Body, Win, NoGi")
             newSubVM.addLowerWin(lowerWin: 1)
             subVM.graphMoreThanZero = true
-        }
-        else if pickerSelectionIndex == "Upper Body" && pickerWinOrLossIndex == "Win"{
-            newSubVM.addUpperWin(upperWin: 1)
-            subVM.graphMoreThanZero = true
-        }
-        else if pickerSelectionIndex == "Chokehold" && pickerWinOrLossIndex == "Win" {
-            newSubVM.addChokeWin(chokeWin: 1)
-            subVM.graphMoreThanZero = true
-        }
-        
-        //MARK: - LOSSES
-        if pickerSelectionIndex == "Lower Body" && pickerWinOrLossIndex == "Loss"{
+            
+        case ("Lower Body", "Loss", "NoGi"):
+            print("increasesubs switch Result: Lower Body, Loss, NoGi")
             newSubVM.addLowerLoss(lowerLoss: 1)
             subVM.graphMoreThanZeroLoss = true
-        }
-        else if pickerSelectionIndex == "Upper Body" && pickerWinOrLossIndex == "Loss"{
+        //End of Lower Body cases
+            
+        //MARK: - SWITCH UPPER BODY CASE
+        case ("Upper Body", "Win", "Gi"):
+            print("increasesubs switch Result: Upper Body, Win, Gi")
+            newSubVM.addUpperGiWin(upperWin: 1)
+            //I will be adding in more graphs for these
+
+        case ("Upper Body", "Loss", "Gi"):
+            print("increasesubs switch Result: Upper Body, Loss, Gi")
+            newSubVM.addUpperGiLoss(upperLoss: 1)
+            //I will be adding in more graphs for these
+            
+        case ("Upper Body", "Win", "NoGi"):
+            print("increasesubs switch Result: Upper Body, Win, NoGi")
+            newSubVM.addUpperWin(upperWin: 1)
+            subVM.graphMoreThanZero = true
+        
+        case ("Upper Body", "Loss", "NoGi"):
+            print("increasesubs switch Result: Upper Body, Loss, NoGi")
             newSubVM.addUpperLoss(upperLoss: 1)
             subVM.graphMoreThanZeroLoss = true
-        }
-        else if pickerSelectionIndex == "Chokehold" && pickerWinOrLossIndex == "Loss" {
+        //End of Upper Body cases
+            
+        //MARK: - SWITCH CHOKE HOLD CASE
+        case ("Chokehold", "Win", "Gi"):
+            print("increasesubs switch Result: Chokehold, Win, Gi")
+            newSubVM.addChokeGiWin(chokeWin: 1)
+            //I will be adding in more graphs for these
+            
+        case ("Chokehold", "Loss", "Gi"):
+            print("increasesubs switch Result: Chokehold, Loss, Gi")
+            newSubVM.addChokeGiLoss(chokeLoss: 1)
+            //I will be adding in more graphs for these
+            
+        case ("Chokehold", "Win", "NoGi"):
+            print("increasesubs switch Result: Chokehold, Win, NoGi")
+            newSubVM.addChokeWin(chokeWin: 1)
+            subVM.graphMoreThanZero = true
+        
+        case ("Chokehold", "Loss", "NoGi"):
+            print("increasesubs switch Result: Chokehold, Loss, NoGi")
             newSubVM.addChokeLoss(chokeLoss: 1)
             subVM.graphMoreThanZeroLoss = true
+        //End of Chokehold cases
+        default:
+            print("UNKNOWN was unable to find a case to add")
         }
+         
+        //This is the old way of adding submissions to the list. Above is the new way I am trying out!
+        //MARK: - WINS
+//        if pickerSelectionIndex == "Lower Body" && pickerWinOrLossIndex == "Win"{
+//            newSubVM.addLowerWin(lowerWin: 1)
+//            subVM.graphMoreThanZero = true
+//        }
+//        else if pickerSelectionIndex == "Upper Body" && pickerWinOrLossIndex == "Win"{
+//            newSubVM.addUpperWin(upperWin: 1)
+//            subVM.graphMoreThanZero = true
+//        }
+//        else if pickerSelectionIndex == "Chokehold" && pickerWinOrLossIndex == "Win" {
+//            newSubVM.addChokeWin(chokeWin: 1)
+//            subVM.graphMoreThanZero = true
+//        }
+//
+//        //MARK: - LOSSES
+//        if pickerSelectionIndex == "Lower Body" && pickerWinOrLossIndex == "Loss"{
+//            newSubVM.addLowerLoss(lowerLoss: 1)
+//            subVM.graphMoreThanZeroLoss = true
+//        }
+//        else if pickerSelectionIndex == "Upper Body" && pickerWinOrLossIndex == "Loss"{
+//            newSubVM.addUpperLoss(upperLoss: 1)
+//            subVM.graphMoreThanZeroLoss = true
+//        }
+//        else if pickerSelectionIndex == "Chokehold" && pickerWinOrLossIndex == "Loss" {
+//            newSubVM.addChokeLoss(chokeLoss: 1)
+//            subVM.graphMoreThanZeroLoss = true
+//        }
         
         print("WINS -> Picker Selection Index:\(pickerSelectionIndex), WinLoss Picker Index: \(pickerWinOrLossIndex),UpperBodyCount:\(subVM.upperBodyCount),LowerBodyCount:\(subVM.lowerBodyCount),ChokeholdCount:\(subVM.chokeholdCount)")
         
@@ -225,6 +300,7 @@ struct FirebaseConstants {
     static let userId = "userId"
     static let winOrLoss = "WinOrLoss"
     static let subType = "SubType"
+    static let giOrNoGi = "giOrNoGi"
     static let sub = "Sub"
     
     //MARK: - TO SAVE STATS TO USERS
@@ -244,7 +320,7 @@ struct FirebaseConstants {
     static let userSubmissionsCollection = "userSubmissions"
     static let userSubStats = "userSubStats"
     
-    
+    //MARK: - NO GI CONSTANTS
     static let upperWins = "upperWins"
     static let chokeWins = "chokeWins"
     static let lowerWins = "lowerWins"
@@ -252,12 +328,33 @@ struct FirebaseConstants {
     static let upperLoss = "upperLoss"
     static let chokeLoss = "chokeLoss"
     static let lowerLoss = "lowerLoss"
+    
+    //MARK: - GI CONSTANTS
+    static let upperGiWins = "upperGiWins"
+    static let chokeGiWins = "chokeGiWins"
+    static let lowerGiWins = "lowerGiWins"
+    
+    static let upperGiLoss = "upperGiLoss"
+    static let chokeGiLoss = "chokeGiLoss"
+    static let lowerGiLoss = "lowerGiLoss"
+    
+    //MARK: - Saved Win Gi Data
+    static let upperBodyGiWins = "upperBodyGiWins"
+    static let chokeholdGiWins = "chokeholdGiWins"
+    static let lowerBodyGiWins = "lowerBodyGiWins"
+    
+    //MARK: - Saved Loss Gi Data
+    static let upperBodyGiLoss = "upperBodyGiLoss"
+    static let chokeholdGiLoss = "chokeholdGiLoss"
+    static let lowerBodyGiLoss = "lowerBodyGiLoss"
+    
 }
 
 struct Submissions: Identifiable {
     var id: String
     var upperLowerChoke: String
     var sub: String
+    var giOrNoGi: String
     var date: Timestamp
     var winOrLoss: String
 }
@@ -265,32 +362,74 @@ struct Submissions: Identifiable {
 struct UpperWinsStruct: Identifiable {
     var id: String
     var upperWins: Int
+    var giOrNoGi: String
 }
 
 struct ChokeWinsStruct: Identifiable {
     var id: String
     var chokeWins: Int
+    var giOrNoGi: String
 }
 
 struct LowerWinsStruct: Identifiable {
     var id: String
     var lowerWins: Int
+    var giOrNoGi: String
 }
 
 struct UpperLossStruct: Identifiable {
     var id: String
     var upperLoss: Int
+    var giOrNoGi: String
 }
 
 struct ChokeLossStruct: Identifiable {
     var id: String
     var chokeLoss: Int
+    var giOrNoGi: String
 }
 
 struct LowerLossStruct: Identifiable {
     var id: String
     var lowerLoss: Int
+    var giOrNoGi: String
 }
+struct UpperWinsGiStruct: Identifiable {
+    var id: String
+    var upperWins: Int
+    var giOrNoGi: String
+}
+
+struct ChokeWinsGiStruct: Identifiable {
+    var id: String
+    var chokeWins: Int
+    var giOrNoGi: String
+}
+
+struct LowerWinsGiStruct: Identifiable {
+    var id: String
+    var lowerWins: Int
+    var giOrNoGi: String
+}
+
+struct UpperLossGiStruct: Identifiable {
+    var id: String
+    var upperLoss: Int
+    var giOrNoGi: String
+}
+
+struct ChokeLossGiStruct: Identifiable {
+    var id: String
+    var chokeLoss: Int
+    var giOrNoGi: String
+}
+
+struct LowerLossGiStruct: Identifiable {
+    var id: String
+    var lowerLoss: Int
+    var giOrNoGi: String
+}
+
 
 class AddingNewSubViewModel: ObservableObject {
     
@@ -300,7 +439,9 @@ class AddingNewSubViewModel: ObservableObject {
 //    @Published var firebaseSubStats = [FirebaseSavedSubs]()
 
     @Published var submissions = [Submissions]()
+    @Published var searchResults = [Submissions]()
     
+    //MARK: - NOGI SUBMISSIONS
     @Published var upperBodyWinsStruct = [UpperWinsStruct]()
     @Published var chokeHoldWinsStruct = [ChokeWinsStruct]()
     @Published var lowerBodyWinsStruct = [LowerWinsStruct]()
@@ -308,6 +449,16 @@ class AddingNewSubViewModel: ObservableObject {
     @Published var upperBodyLossStruct = [UpperLossStruct]()
     @Published var chokeHoldLossStruct = [ChokeLossStruct]()
     @Published var lowerBodyLossStruct = [LowerLossStruct]()
+    
+    
+    //MARK: - GI SUBMISSIONS
+    @Published var upperBodyWinsGiStruct = [UpperWinsGiStruct]()
+    @Published var chokeHoldWinsGiStruct = [ChokeWinsGiStruct]()
+    @Published var lowerBodyWinsGiStruct = [LowerWinsGiStruct]()
+    
+    @Published var upperBodyLossGiStruct = [UpperLossGiStruct]()
+    @Published var chokeHoldLossGiStruct = [ChokeLossGiStruct]()
+    @Published var lowerBodyLossGiStruct = [LowerLossGiStruct]()
     
     let myBJJUser: MyBJJUser?
     
@@ -320,6 +471,7 @@ class AddingNewSubViewModel: ObservableObject {
     }
 
     func fetchAllStats() {
+        //MARK: - GET NOGI STATS
         getUpperWinStats()
         getChokeWinStats()
         getLowerWinStats()
@@ -327,11 +479,22 @@ class AddingNewSubViewModel: ObservableObject {
         getUpperLossStats()
         getChokeLossStats()
         getLowerLossStats()
+        
+        //MARK: - GET GI STATS
+        getChokeWinGiStats()
+        getLowerWinGiStats()
+        getUpperWinGiStats()
+        
+        getChokeLossGiStats()
+        getLowerLossGiStats()
+        getUpperLossGiStats()
     }
     
 
     //---------------------------------------------------------------------------------------------------
-    //MARK: - GET SUB STATS
+    //MARK: - GET SUB STATS (NOGI)
+    //---------------------------------------------------------------------------------------------------
+
     func getUpperWinStats() {
         //Getting the users ID
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -346,7 +509,7 @@ class AddingNewSubViewModel: ObservableObject {
                     //Running on the main thread for updating the view
                     DispatchQueue.main.async {
                         self.upperBodyWinsStruct = queryUpperWin.documents.map({ queryDocumentSnapshot in
-                            return UpperWinsStruct(id: queryDocumentSnapshot.documentID, upperWins: queryDocumentSnapshot[FirebaseConstants.upperWins] as? Int ?? 0)
+                            return UpperWinsStruct(id: queryDocumentSnapshot.documentID, upperWins: queryDocumentSnapshot[FirebaseConstants.upperWins] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
                         })
                     }
                 } else {
@@ -354,7 +517,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//GetUpperWinStats
     
     func getChokeWinStats(){
         //Getting the users ID
@@ -371,7 +534,7 @@ class AddingNewSubViewModel: ObservableObject {
                     //Running on the main thread for updating the view
                     DispatchQueue.main.async {
                         self.chokeHoldWinsStruct = queryChokeWin.documents.map({ queryDocumentSnapshot in
-                            return ChokeWinsStruct(id: queryDocumentSnapshot.documentID, chokeWins: queryDocumentSnapshot[FirebaseConstants.chokeWins] as? Int ?? 0)
+                            return ChokeWinsStruct(id: queryDocumentSnapshot.documentID, chokeWins: queryDocumentSnapshot[FirebaseConstants.chokeWins] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
                         })
                     }
                 } else {
@@ -379,7 +542,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//GetChokeWinStats
     
     func getLowerWinStats(){
         //Getting the users ID
@@ -395,7 +558,7 @@ class AddingNewSubViewModel: ObservableObject {
                     //Running on the main thread for updating the view
                     DispatchQueue.main.async {
                         self.lowerBodyWinsStruct = queryLowerWin.documents.map({ queryDocumentSnapshot in
-                            return LowerWinsStruct(id: queryDocumentSnapshot.documentID, lowerWins: queryDocumentSnapshot[FirebaseConstants.lowerWins] as? Int ?? 0)
+                            return LowerWinsStruct(id: queryDocumentSnapshot.documentID, lowerWins: queryDocumentSnapshot[FirebaseConstants.lowerWins] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
                         })
                     }
                 } else {
@@ -403,7 +566,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//GetLowerWinStats
     
     func getUpperLossStats(){
         //Getting the users ID
@@ -419,7 +582,7 @@ class AddingNewSubViewModel: ObservableObject {
                     //Running on the main thread for updating the view
                     DispatchQueue.main.async {
                         self.upperBodyLossStruct = queryUpperLoss.documents.map({ queryDocumentSnapshot in
-                            return UpperLossStruct(id: queryDocumentSnapshot.documentID, upperLoss: queryDocumentSnapshot[FirebaseConstants.upperLoss] as? Int ?? 0)
+                            return UpperLossStruct(id: queryDocumentSnapshot.documentID, upperLoss: queryDocumentSnapshot[FirebaseConstants.upperLoss] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
                         })
                     }
                 } else {
@@ -428,7 +591,7 @@ class AddingNewSubViewModel: ObservableObject {
             }
         }
         
-    }
+    }//:GetUpperLossStats
     
     func getChokeLossStats(){
         //Getting the users ID
@@ -444,7 +607,7 @@ class AddingNewSubViewModel: ObservableObject {
                     //Running on the main thread for updating the view
                     DispatchQueue.main.async {
                         self.chokeHoldLossStruct = queryChokeLoss.documents.map({ queryDocumentSnapshot in
-                            return ChokeLossStruct(id: queryDocumentSnapshot.documentID, chokeLoss: queryDocumentSnapshot[FirebaseConstants.chokeLoss] as? Int ?? 0)
+                            return ChokeLossStruct(id: queryDocumentSnapshot.documentID, chokeLoss: queryDocumentSnapshot[FirebaseConstants.chokeLoss] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
                         })
                     }
                 } else {
@@ -452,7 +615,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//GetChokeLossStats
     
     func getLowerLossStats(){
         //Getting the users ID
@@ -468,7 +631,7 @@ class AddingNewSubViewModel: ObservableObject {
                     //Running on the main thread for updating the view
                     DispatchQueue.main.async {
                         self.lowerBodyLossStruct = queryLowerLoss.documents.map({ queryDocumentSnapshot in
-                            return LowerLossStruct(id: queryDocumentSnapshot.documentID, lowerLoss: queryDocumentSnapshot[FirebaseConstants.lowerLoss] as? Int ?? 0)
+                            return LowerLossStruct(id: queryDocumentSnapshot.documentID, lowerLoss: queryDocumentSnapshot[FirebaseConstants.lowerLoss] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
                         })
                     }
                 } else {
@@ -477,9 +640,158 @@ class AddingNewSubViewModel: ObservableObject {
             }
         }
     }//GetLowerLossStats
+    //---------------------------------------------------------------------------------------------------
+    //MARK: - GET SUB STATS (GI)
+    //---------------------------------------------------------------------------------------------------
+    func getUpperWinGiStats() {
+        //Getting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperGiWins).getDocuments { queryUpperWin, error in
+            if error == nil {
+                //No Errors
+                
+                if let queryUpperWin = queryUpperWin {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.upperBodyWinsGiStruct = queryUpperWin.documents.map({ queryDocumentSnapshot in
+                            return UpperWinsGiStruct(id: queryDocumentSnapshot.documentID, upperWins: queryDocumentSnapshot[FirebaseConstants.upperGiWins] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+    }//GetUpperWinGiStats
+    
+    func getChokeWinGiStats(){
+        //Getting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeGiWins).getDocuments { queryChokeWin, error in
+            if error == nil {
+                //No Errors
+                
+                if let queryChokeWin = queryChokeWin {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.chokeHoldWinsGiStruct = queryChokeWin.documents.map({ queryDocumentSnapshot in
+                            return ChokeWinsGiStruct(id: queryDocumentSnapshot.documentID, chokeWins: queryDocumentSnapshot[FirebaseConstants.chokeGiWins] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+    }//GetChokeWinGiStats
+    
+    func getLowerWinGiStats(){
+        //Getting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.lowerGiWins).getDocuments { queryLowerWin, error in
+            if error == nil {
+                //No Errors
+                
+                if let queryLowerWin = queryLowerWin {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.lowerBodyWinsGiStruct = queryLowerWin.documents.map({ queryDocumentSnapshot in
+                            return LowerWinsGiStruct(id: queryDocumentSnapshot.documentID, lowerWins: queryDocumentSnapshot[FirebaseConstants.lowerGiWins] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+    }//GetLowerWinGiStats
+    
+    func getUpperLossGiStats(){
+        //Getting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperGiLoss).getDocuments { queryUpperLoss, error in
+            if error == nil {
+                //No Errors
+                
+                if let queryUpperLoss = queryUpperLoss {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.upperBodyLossGiStruct = queryUpperLoss.documents.map({ queryDocumentSnapshot in
+                            return UpperLossGiStruct(id: queryDocumentSnapshot.documentID, upperLoss: queryDocumentSnapshot[FirebaseConstants.upperGiLoss] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+        
+    }//:GetUpperLossGiStats
+    
+    func getChokeLossGiStats(){
+        //Getting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeGiLoss).getDocuments { queryChokeLoss, error in
+            if error == nil {
+                //No Errors
+                
+                if let queryChokeLoss = queryChokeLoss {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.chokeHoldLossGiStruct = queryChokeLoss.documents.map({ queryDocumentSnapshot in
+                            return ChokeLossGiStruct(id: queryDocumentSnapshot.documentID, chokeLoss: queryDocumentSnapshot[FirebaseConstants.chokeGiLoss] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+    }//GetChokeLossGiStats
+    
+    func getLowerLossGiStats(){
+        //Getting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.lowerGiLoss).getDocuments { queryLowerLoss, error in
+            if error == nil {
+                //No Errors
+                
+                if let queryLowerLoss = queryLowerLoss {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.lowerBodyLossGiStruct = queryLowerLoss.documents.map({ queryDocumentSnapshot in
+                            return LowerLossGiStruct(id: queryDocumentSnapshot.documentID, lowerLoss: queryDocumentSnapshot[FirebaseConstants.lowerGiLoss] as? Int ?? 0, giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "N/A")
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+    }//GetLowerLossGiStats
     
     //---------------------------------------------------------------------------------------------------
     //MARK: - GET LIST OF SUBS
+    //---------------------------------------------------------------------------------------------------
     func getDataSubmissions() {
         //Getting the users ID
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -493,7 +805,7 @@ class AddingNewSubViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.submissions = querySnapshot.documents.map({ queryDocumentSnapshot in
                             //Create a submission item for each document to return
-                            return Submissions(id: queryDocumentSnapshot.documentID, upperLowerChoke: queryDocumentSnapshot[FirebaseConstants.subType] as? String ?? "", sub: queryDocumentSnapshot[FirebaseConstants.sub] as? String ?? "", date: queryDocumentSnapshot["timestamp"] as? Timestamp ?? Timestamp(), winOrLoss: queryDocumentSnapshot[FirebaseConstants.winOrLoss] as? String ?? "")
+                            return Submissions(id: queryDocumentSnapshot.documentID, upperLowerChoke: queryDocumentSnapshot[FirebaseConstants.subType] as? String ?? "", sub: queryDocumentSnapshot[FirebaseConstants.sub] as? String ?? "", giOrNoGi: queryDocumentSnapshot[FirebaseConstants.giOrNoGi] as? String ?? "", date: queryDocumentSnapshot["timestamp"] as? Timestamp ?? Timestamp(), winOrLoss: queryDocumentSnapshot[FirebaseConstants.winOrLoss] as? String ?? "")
                         })
                     }
                 }
@@ -506,6 +818,8 @@ class AddingNewSubViewModel: ObservableObject {
     
     //---------------------------------------------------------------------------------------------------
     //MARK: - ADD SUB STATS
+    //MARK: - ADD NOGI SUBMISSIONS
+    //---------------------------------------------------------------------------------------------------
     func addUpperWin(upperWin: Int) {
         //Gettting the users ID
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -513,7 +827,7 @@ class AddingNewSubViewModel: ObservableObject {
         let db = Firestore.firestore()
         
         //Add a document to a Collection
-        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.upperBodyWins: upperWin, "timestamp": Timestamp()]) { error in
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.upperBodyWins: upperWin,"timestamp": Timestamp()]) { error in
             //Check for Error
             if error == nil {
                 //No Errors
@@ -533,7 +847,7 @@ class AddingNewSubViewModel: ObservableObject {
         let db = Firestore.firestore()
         
         //Add a document to a Collection
-        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.upperBodyLoss: upperLoss, "timestamp": Timestamp()]) { error in
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.upperBodyLoss: upperLoss,"timestamp": Timestamp()]) { error in
             //Check for Error
             if error == nil {
                 //No Errors
@@ -553,7 +867,7 @@ class AddingNewSubViewModel: ObservableObject {
         let db = Firestore.firestore()
         
         //Add a document to a Collection
-        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.chokeholdWins: chokeWin, "timestamp": Timestamp()]) { error in
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.chokeholdWins: chokeWin,"timestamp": Timestamp()]) { error in
             //Check for Error
             if error == nil {
                 //No Errors
@@ -573,7 +887,7 @@ class AddingNewSubViewModel: ObservableObject {
         let db = Firestore.firestore()
         
         //Add a document to a Collection
-        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.chokeholdLoss: chokeLoss, "timestamp": Timestamp()]) { error in
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.chokeholdLoss: chokeLoss,"timestamp": Timestamp()]) { error in
             //Check for Error
             if error == nil {
                 //No Errors
@@ -584,7 +898,7 @@ class AddingNewSubViewModel: ObservableObject {
                 
             }
         }
-    }//: Add Choke Win
+    }//: Add Choke Loss
     
     func addLowerWin(lowerWin: Int) {
         //Gettting the users ID
@@ -625,17 +939,139 @@ class AddingNewSubViewModel: ObservableObject {
             }
         }
     }//: Add Lower Win
+    //---------------------------------------------------------------------------------------------------
+    //MARK: - ADD GI SUBMISSIONS
+    //---------------------------------------------------------------------------------------------------
+    func addUpperGiWin(upperWin: Int) {
+        //Gettting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        //Add a document to a Collection
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperGiWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.upperBodyGiWins: upperWin,"timestamp": Timestamp()]) { error in
+            //Check for Error
+            if error == nil {
+                //No Errors
+                
+                //Call get data to retreive latest Data
+                self.getUpperWinStats()
+            } else {
+                
+            }
+        }
+    }//: Add UpperGi Win
     
+    func addUpperGiLoss(upperLoss: Int) {
+        //Gettting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        //Add a document to a Collection
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperGiLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.upperBodyGiLoss: upperLoss,"timestamp": Timestamp()]) { error in
+            //Check for Error
+            if error == nil {
+                //No Errors
+                
+                //Call get data to retreive latest Data
+                self.getUpperLossStats()
+            } else {
+                
+            }
+        }
+    }//: Add UpperGi Loss
+    
+    func addChokeGiWin(chokeWin: Int) {
+        //Gettting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        //Add a document to a Collection
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeGiWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.chokeholdGiWins: chokeWin,"timestamp": Timestamp()]) { error in
+            //Check for Error
+            if error == nil {
+                //No Errors
+                
+                //Call get data to retreive latest Data
+                self.getChokeWinStats()
+            } else {
+                
+            }
+        }
+    }//: Add ChokeGi Win
+
+    func addChokeGiLoss(chokeLoss: Int) {
+        //Gettting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        //Add a document to a Collection
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeGiLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.chokeholdGiLoss: chokeLoss,"timestamp": Timestamp()]) { error in
+            //Check for Error
+            if error == nil {
+                //No Errors
+                
+                //Call get data to retreive latest Data
+                self.getChokeLossStats()
+            } else {
+                
+            }
+        }
+    }//: Add ChokeGi Loss
+    
+    func addLowerGiWin(lowerWin: Int) {
+        //Gettting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        //Add a document to a Collection
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.lowerGiWins).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.lowerBodyGiWins: lowerWin, "timestamp": Timestamp()]) { error in
+            //Check for Error
+            if error == nil {
+                //No Errors
+                
+                //Call get data to retreive latest Data
+                self.getLowerWinStats()
+            } else {
+                
+            }
+        }
+    }//: Add LowerGi Win
+    
+    func addLowerGiLoss(lowerLoss: Int) {
+        //Gettting the users ID
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get reference to the data base
+        let db = Firestore.firestore()
+        
+        //Add a document to a Collection
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.lowerGiLoss).addDocument(data: [FirebaseConstants.userId : userId, FirebaseConstants.lowerBodyGiLoss: lowerLoss, "timestamp": Timestamp()]) { error in
+            //Check for Error
+            if error == nil {
+                //No Errors
+                
+                //Call get data to retreive latest Data
+                self.getLowerLossStats()
+            } else {
+                
+            }
+        }
+    }//: Add LowerGi Win
     //---------------------------------------------------------------------------------------------------
     //MARK: - ADD SUBMISSION TO LIST
-    func addDataSubmissions(winOrLoss: String, subType: String, sub: String){
+    //---------------------------------------------------------------------------------------------------
+    func addDataSubmissions(winOrLoss: String, subType: String, sub: String, giOrNoGi: String){
         //Getting the users ID
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
         //Get reference to the data base
         let db = Firestore.firestore()
         
         //Add a document to a collection
-        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubmissionsCollection).addDocument(data: [FirebaseConstants.userId : userId,FirebaseConstants.subType : subType, FirebaseConstants.winOrLoss : winOrLoss, FirebaseConstants.sub : sub, "timestamp": Timestamp()]) { error in
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubmissionsCollection).addDocument(data: [FirebaseConstants.userId : userId,FirebaseConstants.subType : subType, FirebaseConstants.winOrLoss : winOrLoss, FirebaseConstants.sub : sub,FirebaseConstants.giOrNoGi : giOrNoGi, "timestamp": Timestamp()]) { error in
             //Check for Errors
             if error == nil {
                 //No Errors
@@ -647,8 +1083,12 @@ class AddingNewSubViewModel: ObservableObject {
             }
         }
     }//AddDataSubmission
+    //---------------------------------------------------------------------------------------------------
     
-    //MARK: - DELETE SUBMISSION FROM LIST
+    
+    
+    //MARK: - DELETE (NOGI) SUBMISSION FROM LIST
+    //---------------------------------------------------------------------------------------------------
     func deleteDataSubmissions(submissionToDelete: Submissions) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
         //Get a reference to database
@@ -691,7 +1131,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//DeleteUpperWin
     
     func deleteChokeWinStats(chokeWinStatsToDelete: ChokeWinsStruct) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -712,7 +1152,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//DeleteChokeWin
     
     func deleteLowerWinStats(lowerWinStatsToDelete: LowerWinsStruct) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -733,7 +1173,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//DeleteLowerWin
     
     func deleteUpperLossStats(upperLossStatsToDelete: UpperLossStruct) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -754,7 +1194,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//DeleteUpperLoss
     
     func deleteChokeLossStats(chokeLossStatsToDelete: ChokeLossStruct) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -775,7 +1215,7 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//DeleteChokeLoss
     
     func deleteLowerLossStats(lowerLossStatsToDelete: LowerLossStruct) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
@@ -796,8 +1236,138 @@ class AddingNewSubViewModel: ObservableObject {
                 }
             }
         }
-    }
+    }//DeleteLowerLoss
+    //---------------------------------------------------------------------------------------------------
+    //MARK: - DELETE (GI) SUBMISSION FROM LIST
+    //---------------------------------------------------------------------------------------------------
+    func deleteUpperWinGiStats(upperWinStatsToDelete: UpperWinsGiStruct) {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get a reference to database
+        let db = Firestore.firestore()
+        //Specify the document to delete
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperGiWins).document(upperWinStatsToDelete.id).delete { error in
+            //Check for Errors
+            if error == nil {
+                //No Errors
+                //Update the ui from the main thread
+                DispatchQueue.main.async {
+                    //Remove the stat that was just deleted
+                    self.upperBodyWinsGiStruct.removeAll { upperWinStat in
+                        //Check for the stat to remove
+                        return upperWinStat.id == upperWinStatsToDelete.id
+                    }
+                }
+            }
+        }
+    }//DeleteUpperGiWinGi
     
+    func deleteChokeWinGiStats(chokeWinStatsToDelete: ChokeWinsGiStruct) {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get a reference to database
+        let db = Firestore.firestore()
+        //Specify the document to delete
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeGiWins).document(chokeWinStatsToDelete.id).delete { error in
+            //Check for Errors
+            if error == nil {
+                //No Errors
+                //Update the ui from the main thread
+                DispatchQueue.main.async {
+                    //Remove the stat that was just deleted
+                    self.chokeHoldWinsGiStruct.removeAll { chokeWinStat in
+                        //Check for the stat to remove
+                        return chokeWinStat.id == chokeWinStatsToDelete.id
+                    }
+                }
+            }
+        }
+    }//DeleteChokeWinGi
+    
+    func deleteLowerWinGiStats(lowerWinStatsToDelete: LowerWinsGiStruct) {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get a reference to database
+        let db = Firestore.firestore()
+        //Specify the document to delete
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.lowerGiWins).document(lowerWinStatsToDelete.id).delete { error in
+            //Check for Errors
+            if error == nil {
+                //No Errors
+                //Update the ui from the main thread
+                DispatchQueue.main.async {
+                    //Remove the stat that was just deleted
+                    self.lowerBodyWinsGiStruct.removeAll { lowerWinStat in
+                        //Check for the stat to remove
+                        return lowerWinStat.id == lowerWinStatsToDelete.id
+                    }
+                }
+            }
+        }
+    }//DeleteLowerWinGi
+    
+    func deleteUpperLossGiStats(upperLossStatsToDelete: UpperLossGiStruct) {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get a reference to database
+        let db = Firestore.firestore()
+        //Specify the document to delete
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.upperGiLoss).document(upperLossStatsToDelete.id).delete { error in
+            //Check for Errors
+            if error == nil {
+                //No Errors
+                //Update the ui from the main thread
+                DispatchQueue.main.async {
+                    //Remove the stat that was just deleted
+                    self.upperBodyLossGiStruct.removeAll { upperLossStat in
+                        //Check for the stat to remove
+                        return upperLossStat.id == upperLossStatsToDelete.id
+                    }
+                }
+            }
+        }
+    }//DeleteUpperLossGi
+    
+    func deleteChokeLossGiStats(chokeLossStatsToDelete: ChokeLossGiStruct) {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get a reference to database
+        let db = Firestore.firestore()
+        //Specify the document to delete
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.chokeGiLoss).document(chokeLossStatsToDelete.id).delete { error in
+            //Check for Errors
+            if error == nil {
+                //No Errors
+                //Update the ui from the main thread
+                DispatchQueue.main.async {
+                    //Remove the stat that was just deleted
+                    self.chokeHoldLossGiStruct.removeAll { chokeLossStat in
+                        //Check for the stat to remove
+                        return chokeLossStat.id == chokeLossStatsToDelete.id
+                    }
+                }
+            }
+        }
+    }//DeleteChokeLossGi
+    
+    func deleteLowerLossGiStats(lowerLossStatsToDelete: LowerLossGiStruct) {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Get a reference to database
+        let db = Firestore.firestore()
+        //Specify the document to delete
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userSubStats).document(userId).collection(FirebaseConstants.lowerGiLoss).document(lowerLossStatsToDelete.id).delete { error in
+            //Check for Errors
+            if error == nil {
+                //No Errors
+                //Update the ui from the main thread
+                DispatchQueue.main.async {
+                    //Remove the stat that was just deleted
+                    self.lowerBodyLossGiStruct.removeAll { lowerLossStat in
+                        //Check for the stat to remove
+                        return lowerLossStat.id == lowerLossStatsToDelete.id
+                    }
+                }
+            }
+        }
+    }//DeleteLowerLossGi
+    //---------------------------------------------------------------------------------------------------
+    //MARK: - UPDATE SUB DATA
+    //---------------------------------------------------------------------------------------------------
     func updateDataSubmisisons(submissionToUpdate: Submissions, subType: String, winOrLoss: String, sub: String) {
         guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
         //Get a reference to database
@@ -817,7 +1387,7 @@ class AddingNewSubViewModel: ObservableObject {
         }
         
     }//: Update Data Submissions
-    
+    //---------------------------------------------------------------------------------------------------
 }
 
 

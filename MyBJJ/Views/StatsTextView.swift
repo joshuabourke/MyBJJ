@@ -13,13 +13,16 @@ struct StatsTextView: View {
     @Environment(\.colorScheme) var colorScheme
     var titleName: String
     var valueName: String
+    var winOrLoss: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(titleName)
                 .font(.headline)
+                .foregroundColor(winOrLoss ? .green : .red)
             Text(valueName)
                 .font(.title.bold())
+
         }//: VSTACK
         .padding()
     }
@@ -27,7 +30,7 @@ struct StatsTextView: View {
 
 struct StatsTextView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsTextView(titleName: "Most Successful", valueName: "Rear Naked")
+        StatsTextView(titleName: "Most Successful", valueName: "Rear Naked", winOrLoss: true)
             .previewLayout(.sizeThatFits)
             .padding()
     }

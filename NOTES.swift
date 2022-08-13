@@ -26,7 +26,7 @@ import Foundation
  
  I want to add a way for users to save their belt rank. I also want to catalog the submissions people are cataloging with their respective belt rank. This will add for even more stat break down for the future of MyBJJ. Along with this addition I am going to start working on adding in some
  
- 1. Adding in Gi, allowing the user to record submission that where performed in Gi.
+ 1. Adding in Gi, allowing the user to record submission that where performed in Gi.✅
     *Idea for the picker, making the picker use images instead of using text.*
  
  2. Saving Belt Rank, Saving belt rank to either the user or use it as a modifier for thier submissions that they log. E.g (1 rear naked - Blue belt 2 stripe). This would allow people to filter for submissions performed at different belt ranks.
@@ -38,7 +38,7 @@ import Foundation
  
  For this view and the changes I am wanting to bring to the user via firebase. I will have to also have to add in a new selection where they can choose, either Gi or No Gi. This is so went saving to Firebase I will be able to then filter or search for only gi or nogi submissions.
  
- 1. Add Gi or No Gi picker. This would just add something to the saved files to show if it was Gi or No Gi.
+ 1. Add Gi or No Gi picker. This would just add something to the saved files to show if it was Gi or No Gi.✅
  
  
  */
