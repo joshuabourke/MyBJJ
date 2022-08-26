@@ -52,7 +52,7 @@ import Foundation
  
  2. Display current belt rank. This would be to show what belt rank the user was when they logged the submission.
  
- 3. Make a Function to be able to choose between either gi or no gi when setting a new skill. Then log them accordingly into the list.
+ 3. Make a Function to be able to choose between either gi or no gi when setting a new skill. Then log them accordingly into the list.✅
  
  */
 
@@ -60,7 +60,7 @@ import Foundation
 /*
  For StatsView I am also wanting to add some stats to display for the user whether it be for gi or for no gi. Give them a basic break down of what they have done either gi or no gi.
  
- 1. Display a pi charts for Gi. This will be the only addition for now, I am going to expand on this in the near future.
+ 1. Display a pi charts for Gi. This will be the only addition for now, I am going to expand on this in the near future.✅
  
  
  */

@@ -36,6 +36,9 @@
 		088BE09C28222A9C007B3B07 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE09B28222A9C007B3B07 /* FirebaseManager.swift */; };
 		088BE09F282231E3007B3B07 /* MyBJJUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE09E282231E3007B3B07 /* MyBJJUser.swift */; };
 		088BE0A128223A74007B3B07 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE0A028223A74007B3B07 /* ImagePicker.swift */; };
+		08B609FB28AB6AC000D3241D /* DetailedSubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B609FA28AB6AC000D3241D /* DetailedSubmissionsView.swift */; };
+		08B60A0128ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B60A0028ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift */; };
+		08B60AB028B4BFE000D3241D /* SubmissionLibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B60AAF28B4BFE000D3241D /* SubmissionLibraryList.swift */; };
 		08D452E2280FBED300E57394 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D452E1280FBED300E57394 /* Extension.swift */; };
 		08DD7067281641420049B719 /* BeltView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DD7066281641420049B719 /* BeltView.swift */; };
 		08E1877728058442006E3D01 /* MyBJJApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1877628058442006E3D01 /* MyBJJApp.swift */; };
@@ -82,6 +85,9 @@
 		088BE09B28222A9C007B3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		088BE09E282231E3007B3B07 /* MyBJJUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBJJUser.swift; sourceTree = "<group>"; };
 		088BE0A028223A74007B3B07 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		08B609FA28AB6AC000D3241D /* DetailedSubmissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedSubmissionsView.swift; sourceTree = "<group>"; };
+		08B60A0028ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLibraryDetailedViewListItemGroup.swift; sourceTree = "<group>"; };
+		08B60AAF28B4BFE000D3241D /* SubmissionLibraryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionLibraryList.swift; sourceTree = "<group>"; };
 		08D452E1280FBED300E57394 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		08DD7066281641420049B719 /* BeltView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeltView.swift; sourceTree = "<group>"; };
 		08E1877328058442006E3D01 /* MyBJJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBJJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +126,7 @@
 		0838B1BD280697D900389711 /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
+				08B609F928AB6AA500D3241D /* SubmissionLibrary */,
 				08E8B5782867E13700039D76 /* RemindersView */,
 				088BE0A228223A7B007B3B07 /* Login View(Firebase) */,
 				08E8B54828570B2C00039D76 /* ProfileView.swift */,
@@ -215,6 +222,16 @@
 				08E8B501284892AB00039D76 /* ForgotPasswordView.swift */,
 			);
 			path = "Login View(Firebase)";
+			sourceTree = "<group>";
+		};
+		08B609F928AB6AA500D3241D /* SubmissionLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				08B609FA28AB6AC000D3241D /* DetailedSubmissionsView.swift */,
+				08B60A0028ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift */,
+				08B60AAF28B4BFE000D3241D /* SubmissionLibraryList.swift */,
+			);
+			path = SubmissionLibrary;
 			sourceTree = "<group>";
 		};
 		08D452E0280FBEC100E57394 /* Extension */ = {
@@ -365,6 +382,7 @@
 				0838B1BC280697D000389711 /* NewSkillView.swift in Sources */,
 				0838B1D3280A155F00389711 /* CoreDataModel.xcdatamodeld in Sources */,
 				08835C4C2892716D005D121B /* NOTES.swift in Sources */,
+				08B60A0128ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift in Sources */,
 				0838B1C72807D1E700389711 /* SubmissionListRowChokes.swift in Sources */,
 				0838B1CF28081A2400389711 /* SingleSelectionDemoView.swift in Sources */,
 				0838B1C92807E0F000389711 /* SubData.swift in Sources */,
@@ -387,6 +405,7 @@
 				08E1877728058442006E3D01 /* MyBJJApp.swift in Sources */,
 				0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */,
 				08E8B57E2867E15200039D76 /* NotificationManager.swift in Sources */,
+				08B609FB28AB6AC000D3241D /* DetailedSubmissionsView.swift in Sources */,
 				08E8B54928570B2C00039D76 /* ProfileView.swift in Sources */,
 				08D452E2280FBED300E57394 /* Extension.swift in Sources */,
 				0839B60D28714008007076F5 /* BeltViewMenu.swift in Sources */,
@@ -399,6 +418,7 @@
 				08E8B5812867E15200039D76 /* ReminderListViewItem.swift in Sources */,
 				0838B1C52807D19C00389711 /* SubmissionListModel.swift in Sources */,
 				0838B1DA280A16AA00389711 /* Saved+CoreDataProperties.swift in Sources */,
+				08B60AB028B4BFE000D3241D /* SubmissionLibraryList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +562,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshbourke.MyBJJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -574,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshbourke.MyBJJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -44,7 +44,16 @@ struct ContentView: View {
                         self.currentTab = 1
                         self.vm.fetchAllStats()
                     }
-            }
+            SubmissionLibraryList()
+                .tabItem {
+                    Text("Library")
+                    Image(systemName: "books.vertical.fill")
+                }
+                .tag(2)
+                .onAppear() {
+                    self.currentTab = 2
+                }
+            }//: TABVIEW
             .environmentObject(vm)
             .environmentObject(subListVM)
             .ignoresSafeArea(edges: .bottom)
