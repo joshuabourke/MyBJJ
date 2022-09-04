@@ -46,16 +46,16 @@ struct ProfileView: View {
     @State var hours: Int = 0
     @State var mintues: Int = 0
     @State var dayOfTheWeek: Int = 0
+
+    @EnvironmentObject var newSubVM: AddingNewSubViewModel
     
     @EnvironmentObject var subListVM: SubListViewModel
     @Binding var closeProfileView: Bool
     @State var didTapAddReminders: Bool = false
     @State var didTapDeleteAccountButton: Bool = false
     
-    //MARK: - BELT COLOURS
-    @State var didChangeBeltColour: Color = .blue
-    @State var didChangeBeltStripes = [Color.white, Color.black, Color.black, Color.black]
-    @State var didChangeStipeBackGround: Color = .black
+
+    @State var beltRankNumber: Int = 0
     //MARK: - BODY
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -69,6 +69,13 @@ struct ProfileView: View {
                 NotificationSettingsView(hours: $hours, mintues: $mintues, dayOfTheWeek: $dayOfTheWeek)
             }//: Sheet
         }//: Scroll
+        .onAppear(){
+            newSubVM.getBeltRankData()
+            checkForBeltRank()
+        }
+        .onDisappear(){
+            newSubVM.getBeltRankData()
+        }
 
     }
     
@@ -95,12 +102,11 @@ struct ProfileView: View {
                     Divider().padding(.vertical,4)
                 //MARK: - BELT RANK VIEW
                 //This view is just to display the users belt rank. I havent started collecting data based on the belt rank but that is a possibility in the future.
-                BeltViewMenu(beltColor: didChangeBeltColour, beltStripColors: didChangeBeltStripes, stripeBackGroundColor: didChangeStipeBackGround)
+                    BeltViewMenu(beltRankNumber: $beltRankNumber)
                 //This beltview menu in the profile view will allow users to change their belt rank. By tapping on the belt in the profile view it will present them with a menu where they can change their belt rank.
                     .contextMenu {
                         Button {
-                            didChangeBeltColour = .white
-                            didChangeBeltStripes = [Color.white, Color.white, Color.white, Color.white]
+                            
                             print("Change Belt Settings")
                         } label: {
                             Label("Change belt", systemImage: "person")
@@ -306,6 +312,7 @@ struct ProfileView: View {
             })
         }//: VSTACK
         .padding()
+
     }//: EXTRACTED PROFILE VIEW.
     
     
@@ -319,6 +326,122 @@ struct ProfileView: View {
             UIApplication.shared.open(mailtoURL, options: [:], completionHandler: nil)
         }
     }
+    
+    //MARK: - CHECK FOR USERS BELT RANK
+    func checkForBeltRank() {
+        let beltRank = newSubVM.beltRankStruct.first?.beltRank
+
+        switch beltRank {
+        case 1:
+            beltRankNumber = 1
+            print("Belt rank 1")
+            
+        case 2:
+            beltRankNumber = 2
+            print("Belt Rank 2")
+
+        case 3:
+            beltRankNumber = 3
+            print("Belt Rank 3")
+
+        case 4:
+            beltRankNumber = 4
+            print("Belt Rank 4")
+            
+        case 5:
+            beltRankNumber = 5
+            print("Belt Rank 5")
+            
+        case 6:
+            beltRankNumber = 6
+            print("Belt Rank 6")
+            
+        case 7:
+            beltRankNumber = 7
+            print("Belt Rank 7")
+            
+        case 8:
+            beltRankNumber = 8
+            print("Belt Rank 8")
+            
+        case 9:
+            beltRankNumber = 9
+            print("Belt Rank 9")
+            
+        case 10:
+            beltRankNumber = 10
+            print("Belt Rank 10")
+            
+        case 11:
+            beltRankNumber = 11
+            print("Belt Rank 11")
+            
+        case 12:
+            beltRankNumber = 12
+            print("Belt Rank 12")
+            
+        case 13:
+            beltRankNumber = 13
+            print("Belt Rank 13")
+            
+        case 14:
+            beltRankNumber = 14
+            print("Belt Rank 14")
+            
+        case 15:
+            beltRankNumber = 15
+            print("Belt Rank 15")
+            
+        case 16:
+            beltRankNumber = 16
+            print("Belt Rank 16")
+            
+        case 17:
+            beltRankNumber = 17
+            print("Belt Rank 17")
+            
+        case 18:
+            beltRankNumber = 18
+            print("Belt Rank 18")
+            
+        case 19:
+            beltRankNumber = 19
+            print("Belt Rank 19")
+            
+        case 20:
+            beltRankNumber = 20
+            print("Belt Rank 20")
+            
+        case 21:
+            beltRankNumber = 21
+            print("Belt Rank 21")
+            
+        case 22:
+            beltRankNumber = 22
+            print("Belt Rank 22")
+            
+        case 23:
+            beltRankNumber = 23
+            print("Belt Rank 23")
+            
+        case 24:
+            beltRankNumber = 24
+            print("Belt Rank 24")
+            
+        case 25:
+            beltRankNumber = 25
+            print("Belt Rank 25")
+            
+        default:
+            print("Couldnt find belt rank number")
+        }
+        
+        
+
+    }//checkForBeltRank.
+
+    
+
     
     //MARK: - CORE DATA FUNCTIONS
     //Here are the Coredata functions ill be using.

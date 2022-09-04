@@ -224,6 +224,7 @@ struct SubListView: View {
                         if showProfileView {
                             withAnimation {
                                 showProfileView.toggle()
+                                vm.getBeltRankData()
                             }
                         }
                         
@@ -242,7 +243,6 @@ struct SubListView: View {
             }//: ZSTACK
         }//NAVIGATION
         .onAppear() {
-            self.vm.getDataSubmissions()
             self.vm.fetchAllStats()
         }
         

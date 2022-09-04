@@ -22,6 +22,8 @@ struct SubmissionLibraryList: View {
             List{
                 //MARK: - CHOKEHOLD SECTION
                 Section {
+                    //This for each is going to make a list item for each of the submissions I have in the Chokehold array of submissions.
+                    //Then it is going to use the name of the submission to then switch over the result and change the variables accordingly.
                     ForEach(chokeHolds, id:\.self) { chokehold in
                         NavigationLink(destination: DetailedSubmissionsView(submissionName: chokehold, subArea: "Chokehold")){
                             Text(chokehold)
@@ -36,9 +38,13 @@ struct SubmissionLibraryList: View {
                 }
                 //MARK: - UPPER BODY SECTION
                 Section {
+                    //This for each is going to make a list item for each of the submissions I have in the Upper body array of submissions.
+                    //Then it is going to use the name of the submission to then switch over the result and change the variables accordingly.
                     ForEach(upperBody, id: \.self) { upperBody in
-                        Text(upperBody)
-                            .font(.body.bold())
+                        NavigationLink(destination: DetailedSubmissionsView(submissionName: upperBody, subArea: "Chokehold")){
+                            Text(upperBody)
+                                .font(.body.bold())
+                        }//: LINK
                     }//: FOREACH
                 } header: {
                     Text("Upper Body")
@@ -48,9 +54,13 @@ struct SubmissionLibraryList: View {
                 }
                 //MARK: - LOWER BODY SECTION
                 Section {
+                    //This for each is going to make a list item for each of the submissions I have in the Lower body array of submissions.
+                    //Then it is going to use the name of the submission to then switch over the result and change the variables accordingly.
                     ForEach(lowerBody, id:\.self) { lowerBody in
-                        Text(lowerBody)
-                            .font(.body.bold())
+                        NavigationLink(destination: DetailedSubmissionsView(submissionName: lowerBody, subArea: "Chokehold")){
+                            Text(lowerBody)
+                                .font(.body.bold())
+                        }//: LINK
                     }//: FOREACH
                 } header: {
                     Text("Lower Body")

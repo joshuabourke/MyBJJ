@@ -348,6 +348,13 @@ struct FirebaseConstants {
     static let chokeholdGiLoss = "chokeholdGiLoss"
     static let lowerBodyGiLoss = "lowerBodyGiLoss"
     
+    //MARK: - Belt Rank CONSTANT
+    //Collection name
+    static let userBeltRanks = "userBeltRanks"
+    //Document name
+    static let beltRank = "beltRank"
+    
+    static let addBeltRank = "addBeltRank"
 }
 
 struct Submissions: Identifiable {
@@ -430,6 +437,11 @@ struct LowerLossGiStruct: Identifiable {
     var giOrNoGi: String
 }
 
+struct BeltRankStruct: Identifiable {
+    var id: String
+    var beltRank: Int
+}
+
 
 class AddingNewSubViewModel: ObservableObject {
     
@@ -460,6 +472,8 @@ class AddingNewSubViewModel: ObservableObject {
     @Published var chokeHoldLossGiStruct = [ChokeLossGiStruct]()
     @Published var lowerBodyLossGiStruct = [LowerLossGiStruct]()
     
+    @Published var beltRankStruct = [BeltRankStruct]()
+    
     let myBJJUser: MyBJJUser?
     
     init(myBJJUser: MyBJJUser?) {
@@ -488,6 +502,8 @@ class AddingNewSubViewModel: ObservableObject {
         getChokeLossGiStats()
         getLowerLossGiStats()
         getUpperLossGiStats()
+        
+        getBeltRankData()
     }
     
 
@@ -815,6 +831,29 @@ class AddingNewSubViewModel: ObservableObject {
         }
         
     }//GetDataSubmission
+    
+    func getBeltRankData() {
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userBeltRanks).document(userId).collection(FirebaseConstants.beltRank).getDocuments { queryGetBeltRankData, error in
+            //Check for errors
+            if error == nil {
+                //No Errors
+                
+                if let queryGetBeltRankData = queryGetBeltRankData {
+                    //Running on the main thread for updating the view
+                    DispatchQueue.main.async {
+                        self.beltRankStruct = queryGetBeltRankData.documents.map({ queryDocumentSnapshot in
+                            return BeltRankStruct(id: queryDocumentSnapshot.documentID, beltRank: queryDocumentSnapshot[FirebaseConstants.beltRank] as? Int ?? 0)
+                        })
+                    }
+                } else {
+                    //Handle Errors
+                }
+            }
+        }
+    }
     
     //---------------------------------------------------------------------------------------------------
     //MARK: - ADD SUB STATS
@@ -1388,6 +1427,25 @@ class AddingNewSubViewModel: ObservableObject {
         
     }//: Update Data Submissions
     //---------------------------------------------------------------------------------------------------
+    //MARK: - UPDATE OR CREATE NEW BELT RANK
+    func setOrUpdateBeltRank(beltRank: Int) {
+        //Reference to users data base
+        guard let userId = FirebaseManager.shared.auth.currentUser?.uid else {return}
+        //Reference to the database
+        let db = Firestore.firestore()
+        
+        //Set the date to update
+        
+        db.collection(FirebaseConstants.submissionCollection).document(userId).collection(FirebaseConstants.userBeltRanks).document(userId).collection(FirebaseConstants.beltRank).document(FirebaseConstants.addBeltRank).setData([FirebaseConstants.beltRank : beltRank, FirebaseConstants.userId : userId], merge: true) { error in
+            //Check for errors
+            if error == nil {
+                //Get the new data
+                self.getBeltRankData()
+            } else {
+                //Handle Errors.
+            }
+        }
+    }
 }
 
 
