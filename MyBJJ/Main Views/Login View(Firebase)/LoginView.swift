@@ -102,6 +102,7 @@ struct LoginView: View {
             
             
             .navigationTitle(ifCreateAccount ? "Create Account" : "Login")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: Button {
                 presentationMode.wrappedValue.dismiss()
                 print("Close Window")

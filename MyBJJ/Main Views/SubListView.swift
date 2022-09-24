@@ -108,6 +108,7 @@ struct SubListView: View {
                                 .frame(width: 120, height: 45)
                             }//: VSTACK
                         } else {
+                            
                             VStack {
                                 ListFilterHScrollToggles(giUpperIsOn: $giUpperIsOn, giLowerIsOn: $giLowerIsOn, giChokeIsOn: $giChokeIsOn, noGiUpperIsOn: $noGiUpperIsOn, noGiLowerIsOn: $noGiLowerIsOn, noGiChokeIsOn: $noGiChokeIsOn, all: $allIsOn, filterWins: $filterWins, filterLosses: $filterLoss, doesHaveGiOrNoGiField: $doesHaveGiOrNoGiField,     upperChokeLowerSearchTermPassed: $upperChokeLowerSearchTerm, giOrNoGiSearchTermPassed: $giOrNoGiSearchTerm, winOrLossSearchTermPassed: $winOrLossSearchTerm)
 
@@ -130,6 +131,14 @@ struct SubListView: View {
                                     .onDelete(perform: delete)
                                     
                                 }//: LIST
+                                .onAppear(){
+                                    vm.fetchAllStats()
+                                    vm.getDataSubmissions()
+                                }
+                                .refreshable {
+                                    vm.fetchAllStats()
+                                    vm.getDataSubmissions()
+                                }
                                 .onChange(of: upperChokeLowerSearchTerm, perform: { search in
                                     //Using this to try and make a list using more than 1 filter per item, this is also expandable. I can filter more out more things.
                                     //This will check to see id doeshavegiornigifield is not true, then it will check to see if the item has giornogifield. Once that is all done it will return some filtered lists. If it passes through both if statments it will then just filter the subs based on their upper lower or choke, other wise it will filter them normally with both upperlowerchoke and giornogi.
@@ -186,12 +195,12 @@ struct SubListView: View {
                         Button(action: {
                             print("GO TO LOGIN SCREEN BUTTON CLICKED")
                             if subListVM.isUserCurrentlyLoggedOut{
-                                //If logged out allow user to open login/create account screen.
+                               //This part of the button checks to see if the user is logged in or not. This will check to see if they arent and take them to the login view instead of their profile view.
                                 didTapProfileButton = true
                                 needsToLogin.toggle()
                                 
                             } else {
-                                //This button is a person that isnt filled in when the user isnt signed in.
+                                //This part of the button checks to see if the user is signed in. Once it has checked to see if the user is logged and it is true in it will open their profile view instead of the login view.
                                 withAnimation {
                                     showProfileView.toggle()
                                 }
@@ -242,9 +251,10 @@ struct SubListView: View {
                 //Top of ZSTACK!
             }//: ZSTACK
         }//NAVIGATION
-        .onAppear() {
-            self.vm.fetchAllStats()
-        }
+//        .onAppear() {
+//            self.vm.fetchAllStats()
+//            self.vm.getDataSubmissions()
+//        }
         
         //MARK: - SIGN OUT ACTION SHEET.
         //this is the sign out action sheet which i think isnt actually in use at the moment.
@@ -266,19 +276,20 @@ struct SubListView: View {
         //MARK: - FULL SCREEN LOG IN SCREEN / CREATE USER
         //This is the full screen cover for the user to log in or create an account. Sign in with apple is also available.
         .fullScreenCover(isPresented: $needsToLogin, onDismiss: {
-            vm.getDataSubmissions()
-            vm.fetchAllStats()
+            self.vm.getDataSubmissions()
+            self.vm.fetchAllStats()
         }) {
             LoginView(didFinishLoginProcess: {
                 self.subListVM.isUserCurrentlyLoggedOut = false
                 self.subListVM.fetchCurrentUser()
                 
-                
                 if !subListVM.isUserCurrentlyLoggedOut{
                     didTapProfileButton = false
                     needsToLogin = false
+                    vm.fetchAllStats()
+                    vm.getDataSubmissions()
                 }
-                
+
             }, didFinishingLoggingIn: $didFinishLoginOrCreateAccount)
         }
     }//: END OF VIEW

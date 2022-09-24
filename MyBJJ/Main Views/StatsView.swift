@@ -108,22 +108,30 @@ struct StatsView: View {
                         //This if statement will check to see if any of the subtype sections are greater than 0. If they are it will change from no recorded subs to start off a pie chart.
                         if (vm.chokeHoldWinsStruct.count > 0) || (vm.upperBodyWinsStruct.count > 0) || vm.lowerBodyWinsStruct.count > 0{
                             VStack(alignment: .center) {
-                                
+                                HStack {
+                                    Text("Wins")
+                                        .font(.title.bold())
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                    Spacer()
+                                    Image(systemName: "figure.stand")
+                                        .font(.body.bold())
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                }//: HSTACK
+                                Divider().padding(.vertical,4)
                                 HStack{
                                     Spacer()
-                                    Text("Wins")
-                                        .font(.system(size: 12).bold())
-                                        
                                     PieChartViewRender(values: [Double(vm.chokeHoldWinsStruct.count), Double(vm.upperBodyWinsStruct.count), Double(vm.lowerBodyWinsStruct.count)], colors: subVM.colors, names: subVM.names, backgroundColor: Color.clear, innerRadiusFraction: 0.6)
                                     PieChartLegend(colors: subVM.colors, numOfChokeHold: vm.chokeHoldWinsStruct.count, numOfUpperBody: vm.upperBodyWinsStruct.count, numOfLowerBody: vm.lowerBodyWinsStruct.count)
                                         
                                     Spacer()
                                 }//: HSTACK
-                                .padding(.vertical)
-                                .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
-                                .padding(.horizontal)
                                 
                             }//: VSTACK
+                            .padding(.vertical)
+                            .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
+                            .padding(.horizontal)
 
                             //MARK: - GRAPH RIGHT SIDE (DESCRIPTION)
                         }//: IF GRAPH IS LESS THAN 0
@@ -148,21 +156,30 @@ struct StatsView: View {
                         //This will also check to see if the subtype in the data base if greater than 0 basically if someone has logged a loss into their account. Then display a pie chart.
                         if (vm.chokeHoldLossStruct.count > 0) || (vm.upperBodyLossStruct.count > 0) || vm.lowerBodyLossStruct.count > 0{
                             VStack(alignment: .center) {
+                                HStack{
+                                    Text("Loss")
+                                        .font(.title.bold())
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                    Spacer()
+                                    Image(systemName: "figure.stand")
+                                        .font(.body.bold())
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                }//: HSTACK
+                                Divider().padding(.vertical,4)
                                 HStack {
                                     Spacer()
-                                    Text("Loss")
-                                        .font(.system(size: 12).bold())
-                                        
                                     PieChartViewRender(values: [Double(vm.chokeHoldLossStruct.count), Double(vm.upperBodyLossStruct.count), Double(vm.lowerBodyLossStruct.count)], colors: subVM.colorsLoss, names: subVM.names, backgroundColor: Color.clear, innerRadiusFraction: 0.6)
                                     PieChartLegend(colors: subVM.colorsLoss, numOfChokeHold: vm.chokeHoldLossStruct.count, numOfUpperBody: vm.upperBodyLossStruct.count, numOfLowerBody: vm.lowerBodyLossStruct.count)
                                         
                                     Spacer()
                                 }//: HSTACK
-                                .padding(.vertical)
-                                .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
-                                .padding(.horizontal)
-                                
+
                             }//: VSTACK
+                            .padding(.vertical)
+                            .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
+                            .padding(.horizontal)
                             
                             
                             //MARK: - GRAPH RIGHT SIDE (DESCRIPTION)
@@ -249,22 +266,33 @@ struct StatsView: View {
                         //This if statement will check to see if any of the subtype sections are greater than 0. If they are it will change from no recorded subs to start off a pie chart.
                         if (vm.chokeHoldWinsGiStruct.count > 0) || (vm.upperBodyWinsGiStruct.count > 0) || vm.lowerBodyWinsGiStruct.count > 0{
                             VStack(alignment: .center) {
-                                
+                                HStack {
+                                    Text("Wins")
+                                        .font(.title.bold())
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                    Spacer()
+                                    Image("giman")
+                                        .resizable()
+                                        .renderingMode(.template)
+                                        .frame(width: 10, height: 20)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                }//: HSTACK
+                                Divider().padding(.vertical,4)
                                 HStack{
                                     Spacer()
-                                    Text("Wins")
-                                        .font(.system(size: 12).bold())
-                                        
                                     PieChartViewRender(values: [Double(vm.chokeHoldWinsGiStruct.count), Double(vm.upperBodyWinsGiStruct.count), Double(vm.lowerBodyWinsGiStruct.count)], colors: subVM.colors, names: subVM.names, backgroundColor: Color.clear, innerRadiusFraction: 0.6)
                                     PieChartLegend(colors: subVM.colors, numOfChokeHold: vm.chokeHoldWinsGiStruct.count, numOfUpperBody: vm.upperBodyWinsGiStruct.count, numOfLowerBody: vm.lowerBodyWinsGiStruct.count)
                                         
                                     Spacer()
                                 }//: HSTACK
-                                .padding(.vertical)
-                                .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
-                                .padding(.horizontal)
-                                
+
                             }//: VSTACK
+                            .padding(.vertical)
+                            .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
+                            .padding(.horizontal)
 
                             //MARK: - GRAPH RIGHT SIDE (DESCRIPTION)
                         }//: IF GRAPH IS LESS THAN 0
@@ -290,21 +318,32 @@ struct StatsView: View {
                         if (vm.chokeHoldLossGiStruct.count > 0) || (vm.upperBodyLossGiStruct.count > 0) || vm.lowerBodyLossGiStruct.count > 0{
                             VStack(alignment: .center) {
                                 HStack {
-                                    Spacer()
                                     Text("Loss")
-                                        .font(.system(size: 12).bold())
-                                        
+                                        .font(.title.bold())
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                    Spacer()
+                                    Image("giman")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .foregroundColor(.white)
+                                        .frame(width: 10, height: 20)
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                }//: HSTACK
+                                Divider().padding(.vertical,4)
+                                HStack {
+                                    Spacer()
                                     PieChartViewRender(values: [Double(vm.chokeHoldLossGiStruct.count), Double(vm.upperBodyLossGiStruct.count), Double(vm.lowerBodyLossGiStruct.count)], colors: subVM.colorsLoss, names: subVM.names, backgroundColor: Color.clear, innerRadiusFraction: 0.6)
                                     PieChartLegend(colors: subVM.colorsLoss, numOfChokeHold: vm.chokeHoldLossGiStruct.count, numOfUpperBody: vm.upperBodyLossGiStruct.count, numOfLowerBody: vm.lowerBodyLossGiStruct.count)
                                         
                                     Spacer()
                                 }//: HSTACK
-                                .padding(.vertical)
-                                .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
-                                .padding(.horizontal)
-                                
+
                             }//: VSTACK
-                            
+                            .padding(.vertical)
+                            .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
+                            .padding(.horizontal)
                             
                             //MARK: - GRAPH RIGHT SIDE (DESCRIPTION)
                         }//: IF GRAPH IS LESS THAN 0
