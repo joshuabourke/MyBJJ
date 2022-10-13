@@ -116,7 +116,8 @@ struct SubListView: View {
                                 //List of all of the users saved submissions. The list will append a new item depending on whether or not they have added a gi or nogi submission.
                                 List{
                                     ForEach(listData) { submissions in
-                                        NavigationLink(destination: Text("This View will show details in future")) {
+                                        NavigationLink(destination: Text("More to come here in future updates")
+                                            .font(.title2.bold())) {
                                             
                                             //If this is to work correctly it should check first to see if the user had check either gi or nogi. Once it has checked it will then insert the correct row for the list. This will also make sure the old data that everyone has saved with gi or no gi will be saved as nogi
                                             if submissions.giOrNoGi == "Gi" {

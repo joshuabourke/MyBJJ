@@ -93,10 +93,12 @@ struct StatsView: View {
                 //This massive if statement is to check to see if the user is signed in or not. If not it will prompt the user to login back in. If the user is signed in they will be shown either their stats or... They will be shown No Stats recorded. This will prompt them to start logging their progress.
                 if !subListVM.isUserCurrentlyLoggedOut {
                     Group{
-                        HStack(alignment: .top){
-                            StatsTextView(titleName: "Most Successful", valueName: mostSuccessfulSub(stringArray: arrayOfWinSubmissions), winOrLoss: true)
-                            StatsTextView(titleName: "Least Successful", valueName: mostSuccessfulSub(stringArray: arrayOfLossSubmissions), winOrLoss: false)
-                        }//: HSTACK (Text Stat Views)
+                        VStack {
+                            HStack(alignment: .top){
+                                StatsTextView(titleName: "Most Successful", valueName: mostSuccessfulSub(stringArray: arrayOfWinSubmissions), winOrLoss: true)
+                                StatsTextView(titleName: "Least Successful", valueName: mostSuccessfulSub(stringArray: arrayOfLossSubmissions), winOrLoss: false)
+                            }//: HSTACK (Text Stat Views)
+                        }//: VSTACK
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
@@ -251,10 +253,12 @@ struct StatsView: View {
                 //This massive if statement is to check to see if the user is signed in or not. If not it will prompt the user to login back in. If the user is signed in they will be shown either their stats or... They will be shown No Stats recorded. This will prompt them to start logging their progress.
                 if !subListVM.isUserCurrentlyLoggedOut {
                     Group{
-                        HStack(alignment: .top){
-                            StatsTextView(titleName: "Most Successful", valueName: mostSuccessfulSub(stringArray: arrayOfGiWinSubmissions), winOrLoss: true)
-                            StatsTextView(titleName: "Least Successful", valueName: mostSuccessfulSub(stringArray: arrayOfGiLossSubmissions), winOrLoss: false)
-                        }//: HSTACK (Text Stat Views)
+                        VStack {
+                            HStack(alignment: .top){
+                                StatsTextView(titleName: "Most Successful", valueName: mostSuccessfulSub(stringArray: arrayOfGiWinSubmissions), winOrLoss: true)
+                                StatsTextView(titleName: "Least Successful", valueName: mostSuccessfulSub(stringArray: arrayOfGiLossSubmissions), winOrLoss: false)
+                            }//: HSTACK (Text Stat Views)
+                        }//: VSTACK
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(UIColor.tertiarySystemBackground).clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous)))
@@ -276,7 +280,7 @@ struct StatsView: View {
                                         .resizable()
                                         .renderingMode(.template)
                                         .frame(width: 10, height: 20)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.primary)
                                         .padding(.vertical, 8)
                                         .padding(.horizontal)
                                 }//: HSTACK
@@ -326,7 +330,7 @@ struct StatsView: View {
                                     Image("giman")
                                         .renderingMode(.template)
                                         .resizable()
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.primary)
                                         .frame(width: 10, height: 20)
                                         .padding(.vertical, 8)
                                         .padding(.horizontal)

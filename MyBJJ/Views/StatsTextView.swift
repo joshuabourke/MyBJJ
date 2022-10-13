@@ -20,9 +20,9 @@ struct StatsTextView: View {
             Text(titleName)
                 .font(.headline)
                 .foregroundColor(winOrLoss ? .green : .red)
+            Divider().padding(.vertical, 4)
             Text(valueName)
                 .font(.title.bold())
-
         }//: VSTACK
         .padding()
     }

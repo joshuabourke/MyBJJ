@@ -80,9 +80,11 @@ struct LoginView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var ifCreateAccount: Bool = false
-    @State var tryingToChooseProfilePic: Bool = false
     @State var showForgotPassword: Bool = false
 
+    
+    @ObservedObject private var createUserViewModel = FormViewModel()
+    
     @Binding var didFinishingLoggingIn: Bool
     //MARK: - BODY
     var body: some View {
@@ -96,10 +98,6 @@ struct LoginView: View {
                 }
                 
             }//: VSTACK
-            .fullScreenCover(isPresented: $tryingToChooseProfilePic){
-                ImagePicker(image: $image)
-        }//: fullscreencover(Image picker profile pic)
-            
             
             .navigationTitle(ifCreateAccount ? "Create Account" : "Login")
             .navigationBarTitleDisplayMode(.inline)
@@ -120,7 +118,7 @@ struct LoginView: View {
     //MARK: - LOG IN SCREEN
     private var loginScreen: some View{
 
-        VStack(alignment: .center, spacing: 40) {
+        VStack(alignment: .center, spacing: 20) {
             Text(self.loginStatusMessage)
                 .foregroundColor(.red)
             
@@ -187,6 +185,9 @@ struct LoginView: View {
                                     return
                                 }
                                 print("signed in")
+
+                                handleAction()
+                                self.didFinishLoginProcess()
                             }
 
                             print("\(String(describing: Auth.auth().currentUser?.uid))")
@@ -200,7 +201,6 @@ struct LoginView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now()){
                         didFinishingLoggingIn.toggle()
                     }
-                    self.didFinishLoginProcess()
                 }
             )
             .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
@@ -230,7 +230,8 @@ struct LoginView: View {
                     withAnimation(.default) {
                         ifCreateAccount.toggle()
                     }
-                    
+                    email = ""
+                    password = ""
                     print("User doesn't have an account, is being redirected to create account screen")
                 } label: {
                     Text("Tap Here")
@@ -258,15 +259,38 @@ struct LoginView: View {
     //MARK: - CREATE ACCOUNT SCREEN
     private var createAccountScreen: some View {
 
-        VStack(alignment: .center, spacing: 40) {
+        VStack(alignment: .center, spacing: 20) {
             Text(self.loginStatusMessage)
                 .foregroundColor(.red)
+            VStack(alignment: .leading,spacing:2){
+                //This is an email validation check list for the user
+                ForEach(createUserViewModel.emailValidations) { validation in
+                    HStack {
+                        Image(systemName: validation.state == .success ? "checkmark.circle.fill" : "checkmark.circle")
+                            .foregroundColor(validation.state == .success ? Color.green : Color.gray.opacity(0.3))
+                        Text(validation.validationType.message(fieldName: validation.field.rawValue))
+                            .strikethrough(validation.state == .success)
+                            .font(.caption.bold())
+                            .foregroundColor(validation.state == .success ? Color.gray : Color.primary)
+                    }
+                }
+                //This is a password validation check list for the user
+                ForEach(createUserViewModel.validations) { validation in
+                    HStack{
+                        Image(systemName: validation.state == .success ? "checkmark.circle.fill" : "checkmark.circle")
+                            .foregroundColor(validation.state == .success ? Color.green : Color.gray.opacity(0.3))
+                        Text(validation.validationType.message(fieldName: validation.field.rawValue))
+                            .strikethrough(validation.state == .success)
+                            .font(.caption.bold())
+                            .foregroundColor(validation.state == .success ? Color.gray : Color.primary)
+                    }
+                }
+            }
             HStack {
                 Image(systemName: "envelope")
                     .font(.system(size: 32).bold())
                     .padding()
-                TextField("email", text: $email)
-                    .autocapitalization(.none)
+                TextField("email", text: $createUserViewModel.email)                    .autocapitalization(.none)
                     .keyboardType(.emailAddress)
                     .foregroundColor(Color.primary)
                     .font(.system(.title3).bold())
@@ -281,7 +305,7 @@ struct LoginView: View {
                 Image(systemName: "lock")
                     .font(.system(size: 32).bold())
                     .padding()
-                SecureField("password", text: $password)
+                SecureField("password", text: $createUserViewModel.password)
                     .foregroundColor(Color.primary)
                     .font(.system(.title3).bold())
                     .padding(.vertical)
@@ -289,6 +313,8 @@ struct LoginView: View {
             }//: HSTACK
             .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemBackground)))
             .padding(.horizontal)
+            
+            
             Button(action: {
                 didFinishingLoggingIn.toggle()
                 handleAction()
@@ -300,6 +326,9 @@ struct LoginView: View {
             .buttonStyle(RectangleButton())
             .frame(width: 200, height: 45)
             .padding()
+            .disabled(!createUserViewModel.isValid)
+            .disabled(!createUserViewModel.isEmailValid)
+
             HStack{
                 Text("Already have an account?")
                     .font(.body.bold())
@@ -307,7 +336,8 @@ struct LoginView: View {
                     withAnimation(.default) {
                         ifCreateAccount.toggle()
                     }
-                    
+                    createUserViewModel.email = ""
+                    createUserViewModel.password = ""
                     print("Already has an account, redirect to login screen")
                 } label: {
                     Text("Tap Here")
@@ -319,6 +349,17 @@ struct LoginView: View {
     }//: CREATE ACCOUNT SCREEN
     
     //MARK: - FUNCTION
+    //This function is to show the user if their email is a valid email they can use to sign up with.
+
+    func textFieldValidatorEmail(_ string: String) -> Bool  {
+        if string.count > 100 {
+            return false
+        }
+        
+        let emailFormat = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" + "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: string)
+    }
     
     //MARK: - HANDLE ACTION
     private func handleAction() {
@@ -348,7 +389,7 @@ struct LoginView: View {
     
     //MARK: - CREATE ACCOUNT
     private func createNewAccount() {
-        FirebaseManager.shared.auth.createUser(withEmail: self.email, password: self.password) { result, err in
+        FirebaseManager.shared.auth.createUser(withEmail: self.createUserViewModel.email, password: self.createUserViewModel.password) { result, err in
             if let err = err {
                 print("Failed to create user:", err)
                 self.loginStatusMessage = "Failed to create user: \(err)"

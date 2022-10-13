@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082C61CB28E40022000A7309 /* PasswordValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082C61CA28E40022000A7309 /* PasswordValidation.swift */; };
 		0838B1BC280697D000389711 /* NewSkillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838B1BB280697D000389711 /* NewSkillView.swift */; };
 		0838B1C02806ABFE00389711 /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838B1BF2806ABFE00389711 /* RectangleButton.swift */; };
 		0838B1C52807D19C00389711 /* SubmissionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838B1C42807D19C00389711 /* SubmissionListModel.swift */; };
@@ -35,7 +36,6 @@
 		088BE09928222640007B3B07 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE09828222640007B3B07 /* LoginView.swift */; };
 		088BE09C28222A9C007B3B07 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE09B28222A9C007B3B07 /* FirebaseManager.swift */; };
 		088BE09F282231E3007B3B07 /* MyBJJUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE09E282231E3007B3B07 /* MyBJJUser.swift */; };
-		088BE0A128223A74007B3B07 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088BE0A028223A74007B3B07 /* ImagePicker.swift */; };
 		08B609FB28AB6AC000D3241D /* DetailedSubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B609FA28AB6AC000D3241D /* DetailedSubmissionsView.swift */; };
 		08B60A0128ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B60A0028ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift */; };
 		08B60AB028B4BFE000D3241D /* SubmissionLibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B60AAF28B4BFE000D3241D /* SubmissionLibraryList.swift */; };
@@ -59,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082C61CA28E40022000A7309 /* PasswordValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidation.swift; sourceTree = "<group>"; };
 		0838B1BB280697D000389711 /* NewSkillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSkillView.swift; sourceTree = "<group>"; };
 		0838B1BF2806ABFE00389711 /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		0838B1C42807D19C00389711 /* SubmissionListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListModel.swift; sourceTree = "<group>"; };
@@ -84,7 +85,6 @@
 		088BE09828222640007B3B07 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		088BE09B28222A9C007B3B07 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		088BE09E282231E3007B3B07 /* MyBJJUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBJJUser.swift; sourceTree = "<group>"; };
-		088BE0A028223A74007B3B07 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		08B609FA28AB6AC000D3241D /* DetailedSubmissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedSubmissionsView.swift; sourceTree = "<group>"; };
 		08B60A0028ADA29C00D3241D /* SubLibraryDetailedViewListItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubLibraryDetailedViewListItemGroup.swift; sourceTree = "<group>"; };
 		08B60AAF28B4BFE000D3241D /* SubmissionLibraryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionLibraryList.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 				0838B1C42807D19C00389711 /* SubmissionListModel.swift */,
 				0838B1C82807E0F000389711 /* SubData.swift */,
 				0843AB59281A6225007ADCEF /* SubViewModel.swift */,
+				082C61CA28E40022000A7309 /* PasswordValidation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				088BE09828222640007B3B07 /* LoginView.swift */,
-				088BE0A028223A74007B3B07 /* ImagePicker.swift */,
 				08E8B501284892AB00039D76 /* ForgotPasswordView.swift */,
 			);
 			path = "Login View(Firebase)";
@@ -399,12 +399,12 @@
 				08FFD9C82814A5FB00F18FB7 /* PieChartLegend.swift in Sources */,
 				08DD7067281641420049B719 /* BeltView.swift in Sources */,
 				0838B1D6280A158100389711 /* MyPersistentController.swift in Sources */,
-				088BE0A128223A74007B3B07 /* ImagePicker.swift in Sources */,
 				08835C6B28A20BA9005D121B /* ListFilterHScrollToggles.swift in Sources */,
 				0843AB5E281A68F7007ADCEF /* StatsView.swift in Sources */,
 				08E1877728058442006E3D01 /* MyBJJApp.swift in Sources */,
 				0843AB5A281A6225007ADCEF /* SubViewModel.swift in Sources */,
 				08E8B57E2867E15200039D76 /* NotificationManager.swift in Sources */,
+				082C61CB28E40022000A7309 /* PasswordValidation.swift in Sources */,
 				08B609FB28AB6AC000D3241D /* DetailedSubmissionsView.swift in Sources */,
 				08E8B54928570B2C00039D76 /* ProfileView.swift in Sources */,
 				08D452E2280FBED300E57394 /* Extension.swift in Sources */,
